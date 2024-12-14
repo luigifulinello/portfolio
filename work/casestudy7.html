@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Previous head content remains the same -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study</title>
+    <style>
+        /* Previous styles remain the same until the section style */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: #f9fafb;
+            min-height: 100vh;
+        }
+
+        .container {
+            position: relative;
+            min-height: 100vh;
+            margin: 0 auto;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav {
+            display: none;
+            position: sticky;
+            top: 0;
+            padding: 1rem;
+            background-color: #f9fafb;
+            z-index: 50;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .dropdown-button {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            left: 1rem;
+            right: 1rem;
+            margin-top: 0.5rem;
+            background: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .dropdown-content.show {
+            display: block;
+        }
+
+        .dropdown-content button {
+            width: 100%;
+            text-align: left;
+            padding: 1rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropdown-content button:hover {
+            background-color: #f3f4f6;
+        }
+
+        /* Desktop Sidebar */
+        .flex-container {
+            display: flex;
+            padding-top: 1.5rem;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .sidebar {
+            width: 16rem;
+            min-height: 100vh;
+            padding: 0 1rem;
+        }
+
+        .sidebar-nav {
+            position: sticky;
+            top: 1.5rem; /* Match the flex-container padding-top */
+        }
+
+        .sidebar button {
+            width: 100%;
+            text-align: left;
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            background: none;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .sidebar button:hover {
+            background-color: #f3f4f6;
+        }
+
+        .sidebar button.active {
+            background-color: #dbeafe;
+            color: #2563eb;
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            padding: 0 3rem;
+            max-width: 720px;
+        }
+
+        section {
+            min-height: 100vh;
+            margin-bottom: 2rem;
+            scroll-margin-top: 1.5rem; /* Match the flex-container padding-top */
+        }
+
+        h2 {
+            font-size: 1.875rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        p {
+            color: #374151;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .mobile-nav {
+                display: block;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            main {
+                padding: 1.5rem;
+            }
+
+            .flex-container {
+                padding-top: 0;
+            }
+
+            section {
+                scroll-margin-top: calc(73px + 1.5rem); /* Height of mobile nav + desired spacing */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Previous HTML structure remains exactly the same -->
+    <div class="container">
+        <!-- Mobile Navigation -->
+        <div class="mobile-nav">
+            <button class="dropdown-button">
+                <span>Overview</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m6 9 6 6 6-6"/>
+                </svg>
+            </button>
+            <div class="dropdown-content">
+                <button data-section="overview">Overview</button>
+                <button data-section="challenge">Challenge</button>
+                <button data-section="solution">Solution</button>
+                <button data-section="results">Results</button>
+            </div>
+        </div>
+
+        <div class="flex-container">
+            <!-- Desktop Sidebar -->
+            <aside class="sidebar">
+                <nav class="sidebar-nav">
+                    <button data-section="overview" class="active">Overview</button>
+                    <button data-section="challenge">Challenge</button>
+                    <button data-section="solution">Solution</button>
+                    <button data-section="results">Results</button>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <main>
+                <section id="overview">
+                    <h2>Overview</h2>
+                    <p>Our client, a leading e-commerce platform, approached us with the challenge of reimagining their user experience to drive better engagement and increase conversion rates.</p>
+                </section>
+
+                <section id="challenge">
+                    <h2>Challenge</h2>
+                    <p>The existing platform suffered from high bounce rates and cart abandonment. User testing revealed navigation issues and a complicated checkout process.</p>
+                </section>
+
+                <section id="solution">
+                    <h2>Solution</h2>
+                    <p>We implemented a complete redesign focused on simplifying the user journey, introducing a streamlined checkout process, and enhancing the mobile experience.</p>
+                </section>
+
+                <section id="results">
+                    <h2>Results</h2>
+                    <p>The new design resulted in a 45% reduction in bounce rate, 30% increase in conversion, and significantly improved user satisfaction scores.</p>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Previous JavaScript remains exactly the same -->
+    <script>
+        // Get DOM elements
+        const dropdownButton = document.querySelector('.dropdown-button');
+        const dropdownContent = document.querySelector('.dropdown-content');
+        const dropdownSpan = dropdownButton.querySelector('span');
+        const allNavButtons = document.querySelectorAll('[data-section]');
+        const sections = document.querySelectorAll('section');
+
+        // Toggle dropdown
+        dropdownButton.addEventListener('click', () => {
+            dropdownContent.classList.toggle('show');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!dropdownButton.contains(e.target)) {
+                dropdownContent.classList.remove('show');
+            }
+        });
+
+        // Handle navigation clicks
+        allNavButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const sectionId = button.dataset.section;
+                const section = document.getElementById(sectionId);
+                
+                section.scrollIntoView({ behavior: 'smooth' });
+                dropdownContent.classList.remove('show');
+                dropdownSpan.textContent = button.textContent;
+            });
+        });
+
+        // Intersection Observer for scroll tracking
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const sectionId = entry.target.id;
+                    
+                    // Update active states
+                    allNavButtons.forEach(button => {
+                        if (button.dataset.section === sectionId) {
+                            button.classList.add('active');
+                            dropdownSpan.textContent = button.textContent;
+                        } else {
+                            button.classList.remove('active');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        sections.forEach(section => observer.observe(section));
+    </script>
+</body>
+</html>
