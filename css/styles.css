@@ -1,15 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+html.landing-page {
+  font-size: 100%;
+}
 
 * { box-sizing: border-box; }
 
 :root { 
   font-size: 50%;
+  --font-main: 'Inter', sans-serif;
+  --color-text: #111;
+  --color-text-light: #555;
+  --color-bg: #fff;
+  --spacing-unit: 1rem;
 }
 
 body {
   font-family: Roboto, sans-serf;
   background-color: black;
   color: white;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
 
 .container {
@@ -277,7 +289,133 @@ img {
   padding: 3rem 0;
 }
 
+/* Landing Page Styles */
 
+body.landing-page {
+    font-family: var(--font-main);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+body.landing-page h1,
+body.landing-page h2,
+body.landing-page h3,
+body.landing-page p {
+  margin: 0;
+}
+
+body.landing-page a:link,
+body.landing-page a:visited {
+  color: var(--color-text);
+  margin-left: 0;
+}
+
+.landing-page .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+}
+
+.intro-header {
+    margin-bottom: 5rem;
+}
+
+.intro-header h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.03em;
+}
+
+.intro-text {
+    font-size: 1.25rem;
+    color: var(--color-text-light);
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+.experience-section h2 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #888;
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+.experience-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.experience-item {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+}
+
+.experience-item h3 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--color-text);
+  float: none;
+  padding: 0;
+}
+
+.experience-item p {
+    font-size: 1.1rem;
+    color: var(--color-text-light);
+  margin-bottom: 0;
+}
+
+@media (min-width: 600px) {
+    .experience-item {
+        grid-template-columns: 1fr 1fr;
+        align-items: baseline;
+    }
+    
+    .experience-item p {
+        text-align: right;
+    }
+}
+
+.links-section {
+    margin-top: 4rem;
+}
+
+.links-section h2 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #888;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.social-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+  padding: 0;
+}
+
+.social-links a {
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.social-links a:visited {
+  color: var(--color-text);
+}
+
+.social-links a:hover {
+    text-decoration: underline;
+}
 
 @media (min-width: 768px) {
   .twocol-grid {
