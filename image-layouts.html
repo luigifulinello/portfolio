@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<!--
+  IMAGE LAYOUT REFERENCE — planning page only, not linked from portfolio.
+  Shows all available image layout modules for case study pages.
+  Drop any .cs-layout-block + inner grid into a .cs-section on a case study page.
+-->
+<html lang="en" class="concept">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Image Layouts — Reference</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/concept.css">
+    <link rel="stylesheet" href="css/case-study.css">
+    <style>
+      /* Reference page chrome — not for production */
+      .ref-wrap {
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding: 0 var(--edge);
+      }
+      .ref-page-head {
+        padding: clamp(3rem, 8vh, 6rem) 0 clamp(2rem, 5vh, 3.5rem);
+        border-bottom: 2px solid var(--ink);
+        margin-bottom: clamp(3rem, 8vh, 6rem);
+      }
+      .ref-page-label {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--muted);
+        margin-bottom: 0.75rem;
+      }
+      .ref-page-title {
+        font-size: clamp(2rem, 5vw, 4rem);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 1.05;
+      }
+      .ref-page-desc {
+        margin-top: 1rem;
+        font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
+        color: var(--muted);
+        max-width: 56ch;
+        line-height: 1.55;
+      }
+      .ref-block {
+        padding-bottom: clamp(4rem, 10vh, 7rem);
+        border-bottom: 1px solid var(--line);
+        margin-bottom: clamp(4rem, 10vh, 7rem);
+      }
+      .ref-block:last-child {
+        border-bottom: none;
+      }
+      .ref-block-head {
+        margin-bottom: clamp(1.75rem, 4vh, 3rem);
+      }
+      .ref-layout-name {
+        font-size: clamp(1.375rem, 2.2vw, 1.875rem);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin-bottom: 0.5rem;
+      }
+      .ref-specs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1.5rem;
+        margin-top: 0.65rem;
+      }
+      .ref-spec {
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .ref-spec strong {
+        color: var(--ink);
+        font-weight: 700;
+      }
+      .ref-snippet {
+        margin-top: 1.25rem;
+        padding: 1rem 1.25rem;
+        background: #f5f5f5;
+        border-left: 3px solid var(--accent);
+        font-size: 0.8125rem;
+        font-family: 'SF Mono', 'Fira Code', 'Menlo', monospace;
+        color: #444;
+        line-height: 1.6;
+        white-space: pre;
+        overflow-x: auto;
+      }
+    </style>
+  </head>
+  <body class="concept case-study">
+
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="concept.html" class="wordmark">Luigi&nbsp;Fulinello</a>
+        <nav class="site-nav">
+          <a href="concept.html#work">Work</a>
+          <a href="concept.html#about">About</a>
+          <a href="case-study-template.html" style="color:var(--accent)">CS Template</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <div class="ref-wrap">
+
+        <div class="ref-page-head">
+          <p class="ref-page-label">Planning reference</p>
+          <h1 class="ref-page-title">Image Layout Modules</h1>
+          <p class="ref-page-desc">
+            Drop-in image layout blocks for case study sections. Each module lives inside
+            <code>.cs-layout-block</code> which constrains it to content width with the
+            standard page gutters. Images use <code>object-fit: cover</code>.
+          </p>
+        </div>
+
+        <!-- ===================== A: 2×2 GRID ===================== -->
+        <div class="ref-block">
+          <div class="ref-block-head">
+            <h2 class="ref-layout-name">A — 2×2 Grid</h2>
+            <div class="ref-specs">
+              <span class="ref-spec">Images: <strong>4</strong></span>
+              <span class="ref-spec">Columns: <strong>2</strong></span>
+              <span class="ref-spec">Rows: <strong>2</strong></span>
+              <span class="ref-spec">Ratio: <strong>4:3 each</strong></span>
+              <span class="ref-spec">Class: <strong>.cs-grid2x2</strong></span>
+            </div>
+            <div class="ref-snippet">&lt;div class="cs-layout-block"&gt;
+  &lt;div class="cs-grid2x2"&gt;
+    &lt;div class="cs-img"&gt;&lt;img src="..." alt="..."&gt;&lt;/div&gt;
+    &lt;div class="cs-img"&gt;&lt;img src="..." alt="..."&gt;&lt;/div&gt;
+    &lt;div class="cs-img"&gt;&lt;img src="..." alt="..."&gt;&lt;/div&gt;
+    &lt;div class="cs-img"&gt;&lt;img src="..." alt="..."&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</div>
+          </div>
+
+          <div class="cs-layout-block" style="margin-top:0">
+            <div class="cs-grid2x2">
+              <div class="cs-img"></div>
+              <div class="cs-img"></div>
+              <div class="cs-img"></div>
+              <div class="cs-img"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===================== B: 1×2 PAIR ===================== -->
+        <div class="ref-block">
+          <div class="ref-block-head">
+            <h2 class="ref-layout-name">B — 1×2 Pair</h2>
+            <div class="ref-specs">
+              <span class="ref-spec">Images: <strong>2</strong></span>
+              <span class="ref-spec">Columns: <strong>2</strong></span>
+              <span class="ref-spec">Rows: <strong>1</strong></span>
+              <span class="ref-spec">Ratio: <strong>16:9 each</strong></span>
+              <span class="ref-spec">Class: <strong>.cs-grid1x2</strong></span>
+            </div>
+            <div class="ref-snippet">&lt;div class="cs-layout-block"&gt;
+  &lt;div class="cs-grid1x2"&gt;
+    &lt;div class="cs-img"&gt;&lt;img src="..." alt="..."&gt;&lt;/div&gt;
+    &lt;div class="cs-img"&gt;&lt;img src="..." alt="..."&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</div>
+          </div>
+
+          <div class="cs-layout-block" style="margin-top:0">
+            <div class="cs-grid1x2">
+              <div class="cs-img"></div>
+              <div class="cs-img"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===================== C: HERO + 1×2 ===================== -->
+        <div class="ref-block">
+          <div class="ref-block-head">
+            <h2 class="ref-layout-name">C — Hero + 1×2</h2>
+            <div class="ref-specs">
+              <span class="ref-spec">Images: <strong>3</strong></span>
+              <span class="ref-spec">Hero ratio: <strong>16:7</strong></span>
+              <span class="ref-spec">Sub ratio: <strong>4:3 each</strong></span>
+              <span class="ref-spec">Class: <strong>.cs-grid-hero2x2</strong></span>
+            </div>
+            <div class="ref-snippet">&lt;div class="cs-layout-block"&gt;
+  &lt;div class="cs-grid-hero2x2"&gt;
+    &lt;div class="cs-img--hero"&gt;&lt;img src="..." alt="..."&gt;&lt;/div&gt;
+    &lt;div class="cs-sub2x2"&gt;
+      &lt;div class="cs-img"&gt;&lt;img src="..." alt="..."&gt;&lt;/div&gt;
+      &lt;div class="cs-img"&gt;&lt;img src="..." alt="..."&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</div>
+          </div>
+
+          <div class="cs-layout-block" style="margin-top:0">
+            <div class="cs-grid-hero2x2">
+              <div class="cs-img--hero"></div>
+              <div class="cs-sub2x2">
+                <div class="cs-img"></div>
+                <div class="cs-img"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p class="footer-lead">Let's build<br>something.</p>
+        <div class="footer-links">
+          <a href="concept.html#work">Work</a>
+          <a href="concept.html#about">About</a>
+        </div>
+        <p class="footer-meta">© 2026 Luigi Fulinello</p>
+      </div>
+    </footer>
+
+  </body>
+</html>

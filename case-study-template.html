@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<!--
+  CASE STUDY TEMPLATE — copy this file to <project-slug>.html and fill in.
+  1. Rename the file to the kebab-case project slug.
+  2. Set the body class modifiers:
+       cs-page--<slug>   (per-page overrides)
+       cs-cat--<category>  (brand accent — e.g. cs-cat--ecommerce makes the
+                            section eyebrows orange; omit to keep them black)
+  3. Replace <TITLE>, breadcrumb, metadata, and section content.
+  4. Add a linked card on concept.html that points here.
+  All layout/behavior comes from css/case-study.css + js/case-study.js.
+  See DESIGN.md for the rules (metadata is Company·Role·Focus·Team; no Timeline/Live).
+-->
+<html lang="en" class="concept">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><TITLE> — Luigi Fulinello</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/concept.css">
+    <link rel="stylesheet" href="css/case-study.css">
+  </head>
+  <body class="concept case-study cs-page--SLUG cs-cat--CATEGORY">
+
+    <!-- Header (shared) -->
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="concept.html" class="wordmark">Luigi&nbsp;Fulinello</a>
+        <nav class="site-nav">
+          <a href="concept.html#work">Work</a>
+          <a href="concept.html#about">About</a>
+          <a href="#resume" target="_blank" rel="noopener noreferrer">Resume</a>
+          <a href="https://www.linkedin.com/in/luigifulinello/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+
+      <!-- ===== MASTHEAD ===== -->
+      <header class="cs-masthead" data-reveal>
+        <div class="cs-wrap">
+          <nav class="cs-crumbs" aria-label="Breadcrumb">
+            <a href="concept.html#work">Work</a>
+            <span class="cs-crumb-sep" aria-hidden="true">/</span>
+            <a href="concept.html#work">E-commerce</a><!-- or Healthcare -->
+            <span class="cs-crumb-sep" aria-hidden="true">/</span>
+            <span class="cs-crumb-current" aria-current="page"><Short title></span>
+          </nav>
+          <h1 class="cs-headline"><Project title></h1>
+          <p class="cs-tagline"><One-sentence summary of the work and its outcome.></p>
+        </div>
+      </header>
+
+      <!-- ===== HERO IMAGE (scroll-driven expand) ===== -->
+      <div class="cs-hero-track">
+        <figure class="cs-hero" aria-label="Hero image placeholder"></figure>
+      </div>
+
+      <!-- ===== STICKY TWO-COLUMN INTRO ===== -->
+      <section class="cs-intro">
+        <div class="cs-wrap cs-intro-grid">
+          <aside class="cs-intro-aside">
+            <p class="cs-eyebrow">Overview</p>
+            <dl class="cs-meta">
+              <div class="cs-meta-item"><dt>Company</dt><dd>[Company]</dd></div>
+              <div class="cs-meta-item"><dt>Role</dt><dd>[Role]</dd></div>
+              <div class="cs-meta-item"><dt>Focus</dt><dd>[Disciplines]</dd></div>
+              <div class="cs-meta-item"><dt>Team</dt><dd>[Team]</dd></div>
+            </dl>
+          </aside>
+          <div class="cs-intro-body" data-reveal>
+            <p class="cs-intro-lead"><Strong opening sentence — the problem and the stakes.></p>
+            <p><Context paragraph.></p>
+            <p><Context paragraph — enough that this column scrolls past the sticky meta.></p>
+            <p><Why it was prioritized; the shape of the work ahead.></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Optional: early Impact band (move here when results lead the story) ===== -->
+
+      <!-- ===== 01 SECTION (two-column) ===== -->
+      <section class="cs-section" data-reveal>
+        <div class="cs-wrap cs-cols">
+          <div class="cs-col-label">
+            <span class="cs-index">01</span>
+            <h2 class="cs-label"><Section title></h2>
+          </div>
+          <div class="cs-col-body">
+            <p class="cs-body-lead"><Lead sentence.></p>
+            <p><Supporting copy.></p>
+          </div>
+        </div>
+        <figure class="cs-figure cs-figure--wide" data-reveal>
+          <div class="cs-fig-inner" aria-label="Image placeholder"></div>
+          <figcaption class="cs-caption">Figure 01 — Caption.</figcaption>
+        </figure>
+      </section>
+
+      <!-- ===== Optional: full-bleed statement (word-by-word fill on scroll) ===== -->
+      <section class="cs-statement">
+        <div class="cs-wrap">
+          <p class="cs-eyebrow">Approach</p>
+          <p class="cs-statement-text"><One bold line stating the strategy.></p>
+        </div>
+      </section>
+
+      <!-- ===== 02 THE WORK (static grid) ===== -->
+      <section class="cs-section" data-reveal>
+        <div class="cs-wrap">
+          <h2 class="cs-label cs-label--solo"><span class="cs-index">02</span> The work</h2>
+          <div class="cs-grid3">
+            <figure class="cs-tile-fig" data-reveal><div class="cs-tile"></div><figcaption class="cs-cap"><Caption.></figcaption></figure>
+            <figure class="cs-tile-fig" data-reveal><div class="cs-tile"></div><figcaption class="cs-cap"><Caption.></figcaption></figure>
+            <figure class="cs-tile-fig" data-reveal><div class="cs-tile"></div><figcaption class="cs-cap"><Caption.></figcaption></figure>
+          </div>
+          <!-- before/after pair (optional):
+          <div class="cs-figure-pair" data-reveal>
+            <figure class="cs-tile-fig"><div class="cs-shot"></div><figcaption class="cs-cap">Before.</figcaption></figure>
+            <figure class="cs-tile-fig"><div class="cs-shot"></div><figcaption class="cs-cap">After.</figcaption></figure>
+          </div>
+          -->
+        </div>
+      </section>
+
+      <!--
+        OPTIONAL MODULES — drop in where the content calls for them:
+
+        Before/after comparison with revenue bars:
+        <div class="cs-compare"> … .cs-compare-col / .cs-compare-col--after … </div>
+
+        Phased rollout with status pills:
+        <ol class="cs-phases"> … .cs-phase (.cs-status--shipped | .cs-status--next) … </ol>
+
+        Takeaways grid:
+        <div class="cs-takeaways"> … .cs-takeaway (title + text) … </div>
+
+        See navigation-redesign.html for full markup of each.
+      -->
+
+      <!-- ===== IMPACT ===== -->
+      <section class="cs-section cs-impact" data-reveal>
+        <div class="cs-wrap">
+          <p class="cs-eyebrow">Impact</p>
+          <div class="cs-metrics-grid">
+            <div class="cs-metric" data-reveal>
+              <span class="cs-val-pre">+</span>
+              <span class="cs-val-main">0<span class="cs-val-suf">%</span></span>
+              <span class="cs-metric-label"><Metric.></span>
+            </div>
+            <div class="cs-metric" data-reveal>
+              <span class="cs-val-pre">+</span>
+              <span class="cs-val-main">0<span class="cs-val-suf">%</span></span>
+              <span class="cs-metric-label"><Metric.></span>
+            </div>
+            <div class="cs-metric" data-reveal>
+              <span class="cs-val-pre">+</span>
+              <span class="cs-val-main">0<span class="cs-val-suf">%</span></span>
+              <span class="cs-metric-label"><Metric.></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer (shared) -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p class="footer-lead">Let's build<br>something.</p>
+        <div class="footer-links">
+          <a href="concept.html#work">Work</a>
+          <a href="concept.html#about">About</a>
+          <a href="#resume" target="_blank" rel="noopener noreferrer">Resume</a>
+          <a href="https://www.linkedin.com/in/luigifulinello/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
+        <p class="footer-meta">© 2026 Luigi Fulinello</p>
+      </div>
+    </footer>
+
+    <script src="js/case-study.js"></script>
+  </body>
+</html>

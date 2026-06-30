@@ -1,0 +1,586 @@
+/* ============================================================
+   Case Study — canonical template
+   Shared layout + behavior for every case study page.
+   Page uses class="concept case-study cs-page--<slug>"; tokens,
+   header & footer come from concept.css. Per-page overrides go
+   under the .cs-page--<slug> modifier (see DESIGN.md).
+   ============================================================ */
+
+.case-study main { padding-bottom: 0; }
+
+/* Shared inner container — matches header/content alignment */
+.cs-wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 var(--edge);
+}
+
+/* Section eyebrows (Overview / Approach / Impact) — black by default.
+   Each case study can rebrand via --cs-accent (see category overrides below). */
+.case-study { --cs-accent: var(--ink); }
+.cs-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--cs-accent);
+  margin-bottom: 1rem;
+}
+
+/* Brand / category overrides — add the matching class to <body>.
+   E-commerce = Truemed orange; healthcare & others TBD. */
+.cs-cat--ecommerce { --cs-accent: #FF6C33; }
+
+/* ---------- Masthead (breadcrumbs + headline + tagline) ---------- */
+.cs-masthead {
+  padding: clamp(2rem, 6vh, 4rem) 0 clamp(4rem, 9vh, 7rem);
+}
+.cs-crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  margin-bottom: clamp(1.5rem, 5vh, 3rem);
+}
+.case-study .cs-crumbs a { color: var(--muted); transition: color 0.18s ease; }
+.case-study .cs-crumbs a:hover { color: var(--ink); }
+.cs-crumb-sep { color: var(--line); }
+.cs-crumb-current { color: var(--ink); }
+
+.cs-headline {
+  font-weight: 800;
+  font-size: clamp(2.5rem, 7vw, 6rem);
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  max-width: 15ch;
+}
+.cs-tagline {
+  margin-top: clamp(1.75rem, 4vh, 2.75rem);
+  max-width: 52ch;
+  font-size: clamp(1.0625rem, 1.6vw, 1.375rem);
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* ---------- Hero image: scroll-driven expand, container-width -> full page ---------- */
+.cs-hero-track {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.cs-hero {
+  /* --expand: 0 = container-aligned width, 1 = full page width. Driven by scroll (JS). */
+  --expand: 0;
+  width: calc(
+    (min(var(--maxw), 100%) - 2 * var(--edge)) * (1 - var(--expand))
+    + 100% * var(--expand)
+  );
+  height: clamp(360px, 72vh, 820px);
+  margin: 0;
+  background: var(--placeholder);
+  overflow: hidden;
+  will-change: width;
+}
+.cs-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ---------- Two-column sticky intro ---------- */
+.cs-intro {
+  padding: clamp(3rem, 9vh, 7rem) 0;
+}
+.cs-intro-grid {
+  display: grid;
+  /* Matches .cs-cols below so the intro body lines up with the content column */
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 2fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+}
+/* Sticky left column — keep transforms off this and its ancestors so sticky holds */
+.cs-intro-aside {
+  position: sticky;
+  top: 6rem;
+}
+
+/* Metadata — vertical, hairline-separated list */
+.cs-meta { margin: 1.25rem 0 0; }
+.cs-meta-item {
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--line);
+}
+.cs-meta-item:first-of-type { border-top: 2px solid var(--ink); }
+.cs-meta-item dt {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 0.35rem;
+}
+.cs-meta-item dd {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+/* Intro body — capped to the same measure as .cs-col-body so columns balance */
+.cs-intro-body {
+  max-width: 58ch;
+  font-size: clamp(1rem, 1.2vw, 1.1875rem);
+}
+/* Higher specificity so it beats the global `:where(p){margin:0}` reset */
+.case-study .cs-intro-body > * + * { margin-top: 1.5rem; }
+.cs-intro-lead {
+  font-size: clamp(1.375rem, 2.2vw, 2rem);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+.cs-intro-body p:not(.cs-intro-lead) {
+  font-size: clamp(1rem, 1.2vw, 1.1875rem);
+  line-height: 1.6;
+  color: #333;
+}
+
+/* ---------- Sections ---------- */
+.cs-section {
+  padding: clamp(3rem, 9vh, 7rem) 0 0;
+}
+
+/* Two-column: sticky label + body */
+.cs-cols {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 2fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+}
+.cs-col-label {
+  position: sticky;
+  top: 6rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+.cs-index { display: none; } /* section numbers removed */
+.cs-label {
+  font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.cs-col-body {
+  font-size: clamp(1rem, 1.2vw, 1.1875rem);
+  line-height: 1.6;
+  color: #333;
+  max-width: 58ch;
+}
+/* Scoped to beat the global `:where(p){margin:0}` reset (specificity 0,1,1) */
+.case-study .cs-col-body > * + * { margin-top: 1.25rem; }
+.cs-body-lead {
+  font-size: clamp(1.25rem, 1.8vw, 1.625rem);
+  line-height: 1.45;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* A label used on its own line (not in the two-column grid) */
+.cs-label--solo {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding-bottom: 1.25rem;
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  border-bottom: 2px solid var(--ink);
+}
+
+/* ---------- Figures ---------- */
+.cs-figure {
+  margin: clamp(2rem, 5vh, 3.5rem) 0 0;
+}
+/* Inner element carries the aspect-ratio + placeholder so figcaption stays outside */
+.cs-fig-inner {
+  background: var(--placeholder);
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  overflow: hidden;
+}
+.cs-fig-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* Mirror .cs-wrap exactly so the figure lines up with header + body content
+   at every width (incl. viewports wider than --maxw, where the old width-calc
+   pushed the figure a gutter to the left of the text). */
+.cs-figure--wide {
+  max-width: var(--maxw);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 var(--edge);
+}
+.cs-caption {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+.cs-shot {
+  background: var(--placeholder);
+  aspect-ratio: 16 / 9;
+  width: 100%;
+}
+.cs-cap {
+  margin-top: 0.85rem;
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+/* ---------- Full-bleed statement ---------- */
+.cs-statement {
+  padding: clamp(4rem, 12vh, 9rem) 0;
+}
+.cs-statement-text {
+  margin-top: 1.25rem;
+  font-size: clamp(1.75rem, 4vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  max-width: 22ch;
+}
+/* Words start gray; js/case-study.js fills them to ink word-by-word on scroll */
+.cs-word { color: #cdcdcd; }
+@media (prefers-reduced-motion: no-preference) {
+  .cs-word { transition: color 0.12s linear; }
+}
+
+/* ---------- The work: static grid + before/after pair ---------- */
+.cs-grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(0.75rem, 1.5vw, 1.25rem);
+}
+.cs-figure-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(0.75rem, 1.5vw, 1.25rem);
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+}
+.cs-tile-fig { margin: 0; }
+.cs-tile {
+  background: var(--placeholder);
+  aspect-ratio: 4 / 3;
+  width: 100%;
+}
+
+/* ---------- Optional module: side-by-side category comparison ---------- */
+.cs-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+.cs-compare-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-bottom: 0.85rem;
+  border-bottom: 2px solid var(--ink);
+}
+.cs-compare-title {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.cs-compare-sub {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.cs-compare-list { list-style: none; margin: 0; padding: 0; }
+.cs-compare-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.cs-compare-line {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.cs-compare-cat { font-size: 1.0625rem; font-weight: 600; }
+.cs-compare-rev {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.cs-bar { display: block; height: 3px; background: #ececec; }
+.cs-bar > span { display: block; height: 100%; background: #c9c9c9; }
+.cs-compare-col--after .cs-bar > span { background: var(--accent); }
+.cs-compare-col--after .cs-compare-rev { color: var(--accent); }
+
+/* ---------- Optional module: phased rollout ---------- */
+.cs-phases {
+  list-style: none;
+  margin: clamp(1.5rem, 3vw, 2.5rem) 0 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+.cs-phase {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem 1.5rem;
+  padding: clamp(1.25rem, 2.5vw, 1.85rem) 0;
+  border-bottom: 1px solid var(--line);
+}
+.cs-phase-num {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+  padding-top: 0.25rem;
+}
+.cs-phase-head {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 0.55rem;
+}
+.cs-phase-title {
+  font-size: clamp(1.125rem, 1.5vw, 1.4rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.cs-status {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.cs-status--shipped { background: var(--accent); color: var(--accent-ink); }
+.cs-status--next { background: transparent; color: var(--muted); border: 1px solid var(--line); }
+.cs-phase-desc {
+  font-size: clamp(1rem, 1.1vw, 1.0625rem);
+  line-height: 1.55;
+  color: #333;
+  max-width: 64ch;
+}
+
+/* ---------- Optional module: takeaways ---------- */
+.cs-takeaways {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+}
+.cs-takeaway-title {
+  font-size: clamp(1.125rem, 1.4vw, 1.3rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.6rem;
+}
+.cs-takeaway-text {
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: #333;
+}
+
+/* ---------- Impact / metrics ---------- */
+.cs-impact { padding-bottom: clamp(4rem, 12vh, 9rem); }
+.cs-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 1.5rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--ink);
+}
+/* Two-col grid: prefix (auto) | number+label (1fr) — so label aligns under the digit */
+.cs-metric {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  row-gap: 0.4rem;
+  column-gap: 0;
+}
+.cs-val-pre {
+  grid-column: 1;
+  grid-row: 1;
+  font-size: clamp(1.1rem, 2.6vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  padding-top: 0.22em;
+  color: var(--ink);
+}
+.cs-val-main {
+  grid-column: 2;
+  grid-row: 1;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--ink);
+  display: flex;
+  align-items: flex-start;
+}
+.cs-val-suf {
+  font-size: 0.45em;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  padding-top: 0.25em;
+}
+.cs-metric-label {
+  grid-column: 2;
+  grid-row: 2;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+.cs-note {
+  font-size: 0.9375rem;
+  color: var(--muted);
+  margin-top: 0.85rem;
+  max-width: 62ch;
+}
+
+/* ---------- Animations: scroll-reveal + hero ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .case-study [data-reveal] {
+    opacity: 0;
+    transform: translateY(26px);
+    transition:
+      opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .case-study [data-reveal].is-in {
+    opacity: 1;
+    transform: none;
+  }
+  /* Stagger children that reveal together (work tiles, metrics) */
+  .case-study .cs-grid3 [data-reveal]:nth-child(2),
+  .case-study .cs-metrics-grid [data-reveal]:nth-child(2) { transition-delay: 0.09s; }
+  .case-study .cs-grid3 [data-reveal]:nth-child(3),
+  .case-study .cs-metrics-grid [data-reveal]:nth-child(3) { transition-delay: 0.18s; }
+}
+
+.case-study .cs-tile {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.case-study .cs-tile-fig:hover .cs-tile { transform: scale(1.015); }
+
+/* ---------- Image layout modules ---------- */
+
+/* A: 2×2 grid — four equal images */
+.cs-grid2x2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(0.5rem, 1vw, 0.875rem);
+}
+.cs-grid2x2 .cs-img {
+  aspect-ratio: 4 / 3;
+  background: var(--placeholder);
+  width: 100%;
+  overflow: hidden;
+}
+.cs-grid2x2 .cs-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* B: 1×2 pair — two equal side-by-side images */
+.cs-grid1x2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(0.5rem, 1vw, 0.875rem);
+}
+.cs-grid1x2 .cs-img {
+  aspect-ratio: 16 / 9;
+  background: var(--placeholder);
+  width: 100%;
+  overflow: hidden;
+}
+.cs-grid1x2 .cs-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* C: Hero + 2×2 — wide single on top, four-up below */
+.cs-grid-hero2x2 {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.5rem, 1vw, 0.875rem);
+}
+.cs-grid-hero2x2 .cs-img--hero {
+  aspect-ratio: 16 / 7;
+  background: var(--placeholder);
+  width: 100%;
+  overflow: hidden;
+}
+.cs-grid-hero2x2 .cs-img--hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.cs-grid-hero2x2 .cs-sub2x2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(0.5rem, 1vw, 0.875rem);
+}
+.cs-grid-hero2x2 .cs-sub2x2 .cs-img {
+  aspect-ratio: 4 / 3;
+  background: var(--placeholder);
+  width: 100%;
+  overflow: hidden;
+}
+.cs-grid-hero2x2 .cs-sub2x2 .cs-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Shared wrapper: constrains all layout modules to content width */
+.cs-layout-block {
+  max-width: var(--maxw);
+  margin: clamp(2rem, 5vh, 3.5rem) auto 0;
+  width: calc(100% - 2 * var(--edge));
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 760px) {
+  .cs-intro-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .cs-intro-aside { position: static; }
+  .cs-cols { grid-template-columns: 1fr; gap: 1.5rem; }
+  .cs-col-label { position: static; }
+  .cs-metrics-grid { grid-template-columns: 1fr; gap: 1.75rem; }
+  .cs-compare { grid-template-columns: 1fr; gap: 2.5rem; }
+  .cs-grid3 { grid-template-columns: 1fr; }
+  .cs-figure-pair { grid-template-columns: 1fr; }
+  .cs-takeaways { grid-template-columns: 1fr; gap: 1.75rem; }
+  .cs-grid2x2 { grid-template-columns: 1fr; }
+  .cs-grid1x2 { grid-template-columns: 1fr; }
+  .cs-grid-hero2x2 .cs-sub2x2 { grid-template-columns: 1fr; }
+}
