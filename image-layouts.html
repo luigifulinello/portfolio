@@ -114,9 +114,11 @@
           <p class="ref-page-label">Planning reference</p>
           <h1 class="ref-page-title">Image Layout Modules</h1>
           <p class="ref-page-desc">
-            Drop-in image layout blocks for case study sections. Each module lives inside
-            <code>.cs-layout-block</code> which constrains it to content width with the
-            standard page gutters. Images use <code>object-fit: cover</code>.
+            Drop-in image layout blocks for case study sections, plus the built-in
+            case-study page modules (hero, three-column grid). Each includes a
+            recommended export size (2× the largest on-screen render, so it stays
+            crisp on retina). Images use <code>object-fit: cover</code>, so match the
+            listed aspect ratio and the frame handles the rest.
           </p>
         </div>
 
@@ -129,6 +131,7 @@
               <span class="ref-spec">Columns: <strong>2</strong></span>
               <span class="ref-spec">Rows: <strong>2</strong></span>
               <span class="ref-spec">Ratio: <strong>4:3 each</strong></span>
+              <span class="ref-spec">Export: <strong>1600 × 1200</strong></span>
               <span class="ref-spec">Class: <strong>.cs-grid2x2</strong></span>
             </div>
             <div class="ref-snippet">&lt;div class="cs-layout-block"&gt;
@@ -160,6 +163,7 @@
               <span class="ref-spec">Columns: <strong>2</strong></span>
               <span class="ref-spec">Rows: <strong>1</strong></span>
               <span class="ref-spec">Ratio: <strong>16:9 each</strong></span>
+              <span class="ref-spec">Export: <strong>1600 × 900</strong></span>
               <span class="ref-spec">Class: <strong>.cs-grid1x2</strong></span>
             </div>
             <div class="ref-snippet">&lt;div class="cs-layout-block"&gt;
@@ -186,6 +190,8 @@
               <span class="ref-spec">Images: <strong>3</strong></span>
               <span class="ref-spec">Hero ratio: <strong>16:7</strong></span>
               <span class="ref-spec">Sub ratio: <strong>4:3 each</strong></span>
+              <span class="ref-spec">Hero export: <strong>2400 × 1050</strong></span>
+              <span class="ref-spec">Sub export: <strong>1600 × 1200</strong></span>
               <span class="ref-spec">Class: <strong>.cs-grid-hero2x2</strong></span>
             </div>
             <div class="ref-snippet">&lt;div class="cs-layout-block"&gt;
@@ -206,6 +212,64 @@
                 <div class="cs-img"></div>
                 <div class="cs-img"></div>
               </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===================== D: CASE STUDY HERO (full-bleed) ===================== -->
+        <div class="ref-block">
+          <div class="ref-block-head">
+            <h2 class="ref-layout-name">D — Case Study Hero</h2>
+            <div class="ref-specs">
+              <span class="ref-spec">Images: <strong>1</strong></span>
+              <span class="ref-spec">Ratio: <strong>~21:9 full-bleed</strong></span>
+              <span class="ref-spec">Export: <strong>2800 × 1200</strong></span>
+              <span class="ref-spec">Class: <strong>.cs-hero</strong></span>
+            </div>
+            <p class="ref-page-desc" style="margin-top:0.85rem">
+              The masthead image at the top of a case study. Starts at content width
+              and expands to full-page width as you scroll (driven by
+              <code>js/case-study.js</code>), so export wide and high-res.
+            </p>
+            <div class="ref-snippet">&lt;div class="cs-hero-track"&gt;
+  &lt;figure class="cs-hero"&gt;
+    &lt;img src="..." alt="..."&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;</div>
+          </div>
+
+          <div class="cs-hero-track">
+            <figure class="cs-hero" style="height:340px"></figure>
+          </div>
+        </div>
+
+        <!-- ===================== E: THREE-COLUMN GRID ===================== -->
+        <div class="ref-block">
+          <div class="ref-block-head">
+            <h2 class="ref-layout-name">E — Three-Column Grid</h2>
+            <div class="ref-specs">
+              <span class="ref-spec">Images: <strong>3</strong></span>
+              <span class="ref-spec">Columns: <strong>3</strong></span>
+              <span class="ref-spec">Ratio: <strong>4:3 each</strong></span>
+              <span class="ref-spec">Export: <strong>1200 × 900</strong></span>
+              <span class="ref-spec">Class: <strong>.cs-grid3</strong></span>
+            </div>
+            <p class="ref-page-desc" style="margin-top:0.85rem">
+              The "The work" module on the case study template — three captioned
+              tiles in a row. Each tile carries an optional <code>figcaption</code>.
+            </p>
+            <div class="ref-snippet">&lt;div class="cs-grid3"&gt;
+  &lt;figure class="cs-tile-fig"&gt;&lt;div class="cs-tile"&gt;&lt;/div&gt;&lt;figcaption class="cs-cap"&gt;Caption.&lt;/figcaption&gt;&lt;/figure&gt;
+  &lt;figure class="cs-tile-fig"&gt;&lt;div class="cs-tile"&gt;&lt;/div&gt;&lt;figcaption class="cs-cap"&gt;Caption.&lt;/figcaption&gt;&lt;/figure&gt;
+  &lt;figure class="cs-tile-fig"&gt;&lt;div class="cs-tile"&gt;&lt;/div&gt;&lt;figcaption class="cs-cap"&gt;Caption.&lt;/figcaption&gt;&lt;/figure&gt;
+&lt;/div&gt;</div>
+          </div>
+
+          <div style="margin-top:0">
+            <div class="cs-grid3">
+              <figure class="cs-tile-fig"><div class="cs-tile"></div><figcaption class="cs-cap">Caption.</figcaption></figure>
+              <figure class="cs-tile-fig"><div class="cs-tile"></div><figcaption class="cs-cap">Caption.</figcaption></figure>
+              <figure class="cs-tile-fig"><div class="cs-tile"></div><figcaption class="cs-cap">Caption.</figcaption></figure>
             </div>
           </div>
         </div>
