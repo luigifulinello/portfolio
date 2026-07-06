@@ -13,7 +13,7 @@ Source of truth for the portfolio's visual system. Read this before adding or ed
 
 | File | Purpose |
 |---|---|
-| `concept.html` | Home / landing. Hero, work grid with tabs, footer, password modal. |
+| `index.html` | Home / landing. Hero, work grid with tabs, footer, password modal. |
 | `css/concept.css` | Design tokens (`:root`), base, header, hero, cards, tabs, footer, modal. Loaded by **every** page. |
 | `css/case-study.css` | The canonical case study template — all case study layout, modules & animations. Relies on tokens from `concept.css`. |
 | `js/case-study.js` | Case study behavior: scroll-reveal + scroll-driven hero expansion. Loaded by every case study. |

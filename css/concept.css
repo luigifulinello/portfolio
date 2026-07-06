@@ -78,11 +78,11 @@ body.concept a {
   transition: color 0.18s ease, border-color 0.18s ease;
 }
 
-.site-nav a:hover { color: var(--ink); border-color: var(--accent); }
+.site-nav a:hover { color: var(--ink); border-color: var(--ink); }
 
 /* ---------- Hero ---------- */
 .hero {
-  padding: clamp(4rem, 12vh, 9rem) var(--edge) clamp(3rem, 8vh, 6rem);
+  padding: clamp(3rem, 8vh, 6rem) var(--edge);
   max-width: var(--maxw);
   margin: 0 auto;
 }
@@ -104,12 +104,42 @@ body.concept a {
 
 .work-head {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
   gap: 1.25rem;
   padding-bottom: 1.25rem;
   border-bottom: 2px solid var(--ink);
 }
+.work-head-main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+/* ---------- Carousel arrow controls (desktop only) ---------- */
+.carousel-nav {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+.carousel-btn {
+  width: 2.75rem;
+  height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color 0.18s ease, color 0.18s ease, opacity 0.18s ease;
+}
+.carousel-btn svg { width: 1.15rem; height: 1.15rem; }
+.carousel-btn:hover:not(:disabled) { border-color: var(--ink); color: var(--ink); }
+.carousel-btn:disabled { opacity: 0.3; cursor: default; }
 
 .section-label {
   font-size: 0.8125rem;
@@ -139,61 +169,72 @@ body.concept a {
 .tab:hover { color: var(--ink); }
 
 .tab.is-active {
-  color: var(--accent-ink);
-  background: var(--accent);
+  color: var(--paper);
+  background: var(--ink);
 }
 
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: clamp(0.75rem, 1.5vw, 1.25rem);
+/* ---------- Work carousel ---------- */
+.card-carousel {
+  --visible: 4;                                   /* cards shown at once (desktop) */
+  --cgap: clamp(0.75rem, 1.5vw, 1.25rem);
   margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;                          /* Firefox */
+  -webkit-overflow-scrolling: touch;
+}
+.card-carousel::-webkit-scrollbar { display: none; }  /* WebKit */
+
+.card-track {
+  display: flex;
+  gap: var(--cgap);
 }
 
-/* Each card is one black block; imagery will be added as a background later */
+/* Each item = image block + title below; sized so --visible fit the viewport */
+.card-item {
+  flex: 0 0 calc((100% - (var(--visible) - 1) * var(--cgap)) / var(--visible));
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+.card-item.is-hidden { display: none; }
+
+/* Card image block — 4:5, fills with the work image (placeholder until loaded) */
 .card {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
   aspect-ratio: 4 / 5;
-  padding: clamp(1.25rem, 1.8vw, 1.75rem);
   background: var(--placeholder);
-  color: var(--ink);
   overflow: hidden;
-  isolation: isolate;
-  cursor: pointer;
   transition: transform 0.2s ease;
 }
-
-.card:hover { transform: translateY(-4px); }
-
-.card-body {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
+/* Image is taller than the frame so it has room to drift vertically.
+   JS sets --parallax (px) on scroll; see js/concept.js. */
+.card img {
+  position: absolute;
+  left: 0;
+  top: -15%;
+  width: 100%;
+  height: 130%;
+  object-fit: cover;
+  display: block;
+  transform: translate3d(0, var(--parallax, 0px), 0);
+  will-change: transform;
 }
 
+/* No parallax overflow when motion is reduced — image simply fills the frame */
+@media (prefers-reduced-motion: reduce) {
+  .card img { top: 0; height: 100%; transform: none; }
+}
+
+/* Title sits below the card, left-aligned */
 .card-title {
-  font-size: clamp(1.25rem, 1.6vw, 1.6rem);
+  font-size: clamp(0.875rem, 1.2vw, 1.1rem);
   font-weight: 700;
   letter-spacing: -0.02em;
-  line-height: 1.05;
+  line-height: 1.15;
   color: var(--ink);
 }
-
-.card-desc {
-  font-size: 0.9375rem;
-  color: var(--muted);
-  line-height: 1.45;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
-  overflow: hidden;
-}
-
-.card.is-hidden { display: none; }
 
 /* ---------- Footer color block ---------- */
 .site-footer {
@@ -221,17 +262,20 @@ body.concept a {
 .footer-links {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  gap: 0.5rem;
-  font-size: 1.0625rem;
-  font-weight: 500;
+  align-items: stretch;
+  min-width: clamp(14rem, 22vw, 20rem);
+  font-size: clamp(1.25rem, 1.8vw, 1.625rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
+/* Right-aligned stacked rows */
 .footer-links a {
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.18s ease;
+  text-align: right;
+  padding: 0.5rem 0;
+  transition: color 0.18s ease, padding-right 0.18s ease;
 }
-.footer-links a:hover { border-color: var(--accent); color: var(--accent); }
+.footer-links a:hover { color: rgba(255, 255, 255, 0.65); padding-right: 0.35rem; }
 
 .footer-meta {
   grid-column: 1 / -1;
@@ -298,7 +342,7 @@ body.concept a {
   top: clamp(1.5rem, 3vw, 2.25rem);
   width: 1.25em;
   height: 1.25em;
-  color: var(--accent);
+  color: var(--ink);
 }
 .about-block:first-child .about-icon { top: 0; }
 .about-block p {
@@ -309,8 +353,11 @@ body.concept a {
 }
 
 /* ---------- Responsive ---------- */
+/* Tablet & mobile: hide arrows, cards become a swipeable carousel with a
+   fractional "peek" so it's clear there's more to swipe. */
 @media (max-width: 980px) {
-  .card-grid { grid-template-columns: repeat(2, 1fr); }
+  .carousel-nav { display: none; }
+  .card-carousel { --visible: 2.25; }
 }
 
 @media (max-width: 760px) {
@@ -321,10 +368,10 @@ body.concept a {
 
 @media (max-width: 620px) {
   .site-nav { gap: 1rem; }
-  .card-grid { grid-template-columns: 1fr; }
-  .work-head { flex-direction: column; align-items: flex-start; }
+  .card-carousel { --visible: 1.15; }
   .footer-inner { grid-template-columns: 1fr; align-items: start; }
-  .footer-links { align-items: flex-start; }
+  .footer-links { min-width: 0; }
+  .footer-links a { text-align: left; }
   .hero-br { display: none; }
 }
 
@@ -374,7 +421,7 @@ body.concept a {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--accent);
+  color: var(--muted);
   margin-bottom: 0.75rem;
 }
 
@@ -409,15 +456,15 @@ body.concept a {
 }
 .pw-input:focus {
   outline: none;
-  border-color: var(--accent);
+  border-color: var(--ink);
 }
 
 .pw-submit {
   font-family: inherit;
   font-size: 0.9375rem;
   font-weight: 600;
-  color: var(--accent-ink);
-  background: var(--accent);
+  color: var(--paper);
+  background: var(--ink);
   border: none;
   padding: 0 1.25rem;
   cursor: pointer;

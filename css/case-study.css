@@ -329,8 +329,8 @@
 }
 .cs-bar { display: block; height: 3px; background: #ececec; }
 .cs-bar > span { display: block; height: 100%; background: #c9c9c9; }
-.cs-compare-col--after .cs-bar > span { background: var(--accent); }
-.cs-compare-col--after .cs-compare-rev { color: var(--accent); }
+.cs-compare-col--after .cs-bar > span { background: var(--cs-accent); }
+.cs-compare-col--after .cs-compare-rev { color: var(--cs-accent); }
 
 /* ---------- Optional module: phased rollout ---------- */
 .cs-phases {
@@ -349,7 +349,7 @@
 .cs-phase-num {
   font-size: 0.875rem;
   font-weight: 700;
-  color: var(--accent);
+  color: var(--cs-accent);
   font-variant-numeric: tabular-nums;
   padding-top: 0.25rem;
 }
@@ -373,7 +373,7 @@
   border-radius: 999px;
   white-space: nowrap;
 }
-.cs-status--shipped { background: var(--accent); color: var(--accent-ink); }
+.cs-status--shipped { background: var(--cs-accent); color: var(--accent-ink); }
 .cs-status--next { background: transparent; color: var(--muted); border: 1px solid var(--line); }
 .cs-phase-desc {
   font-size: clamp(1rem, 1.1vw, 1.0625rem);

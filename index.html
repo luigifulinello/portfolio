@@ -1,55 +1,191 @@
-<html class="landing-page">
+<!DOCTYPE html>
+<html lang="en" class="concept">
   <head>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Luigi Fulinello</title>
-      <link rel="stylesheet" href="css/reset.css">
-      <link rel="stylesheet" href="css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Luigi Fulinello — Product Manager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/concept.css">
   </head>
-    <body class="landing-page">
-    
-    <div class="container">
-        <header class="intro-header">
-            <h1>Luigi Fulinello</h1>
-            <p class="intro-text">
-               I'm a Product Manager at Waystar, the leading healthcare revenue cycle SaaS platform, working on claims management. Coming from product design, I bring a user-centered approach to balancing product strategy and outcomes. My work spans AI-driven features and core workflows connecting care delivery, insurance, and payment. Previously, I worked in e-commerce and fintech.
-            </p>
-        </header>
+  <body class="concept">
 
-        <section class="experience-section">
-            <h2><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>Previous Experience</h2>
-            <div class="experience-list">
-                <div class="experience-item">
-                    <h3>Waystar</h3>
-                    <p>Senior Product Designer</p>
-                </div>
-                <div class="experience-item">
-                    <h3>Solo Brands</h3>
-                    <p>Product Design Lead</p>
-                </div>
-                <div class="experience-item">
-                    <h3>DailyPay</h3>
-                    <p>Product Designer</p>
-                </div>
-                <div class="experience-item">
-                    <h3>CSM Sport & Entertainment</h3>
-                    <p>Junior Art Director</p>
-                </div>
-                  <div class="experience-item">
-                    <h3>Union Square Hospitality Group</h3>
-                    <p>Freelance Graphic Designer</p>
-                </div>
+    <!-- Header -->
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="#top" class="wordmark">Luigi&nbsp;Fulinello</a>
+        <nav class="site-nav">
+          <a href="#work">Work</a>
+          <a href="#about">About</a>
+          <a href="#resume" target="_blank" rel="noopener noreferrer">Resume</a>
+          <a href="https://www.linkedin.com/in/luigifulinello/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+
+      <!-- Hero -->
+      <section class="hero">
+        <h1 class="hero-title">
+          Product Manager&nbsp;&amp;&nbsp;Product Designer<br class="hero-br">
+          building commerce and healthcare<br class="hero-br">
+          software experiences.
+        </h1>
+      </section>
+
+      <!-- Work: tabs + cards -->
+      <section class="work" id="work">
+        <div class="work-head">
+          <div class="work-head-main">
+            <h2 class="section-label">Selected Work</h2>
+            <div class="tabs" role="tablist" aria-label="Filter work by industry">
+              <button class="tab is-active" data-filter="ecommerce" role="tab" aria-selected="true">E-commerce</button>
+              <button class="tab" data-filter="healthcare" role="tab" aria-selected="false">Healthcare</button>
             </div>
-        </section>
+          </div>
+          <div class="carousel-nav">
+            <button class="carousel-btn" data-dir="prev" aria-label="Previous work" disabled>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <button class="carousel-btn" data-dir="next" aria-label="Next work">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
 
-        <section class="links-section">
-            <h2><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>Connect</h2>
-            <ul class="social-links">
-                <li><a href="https://www.linkedin.com/in/luigifulinello/">LinkedIn</a></li>
-                <li><a href="https://x.com/luigifulinello">Twitter</a></li>
-                <li><a href="#">GitHub</a></li>
-            </ul>
-        </section>
+        <div class="card-carousel">
+          <div class="card-track">
+            <!-- E-commerce -->
+            <a class="card-item" href="pdp-redesign.html" data-category="ecommerce">
+              <div class="card"><img src="images/work_card_solo_stove_pdp.jpg" alt="Solo Stove Product Detail Page"></div>
+              <h3 class="card-title">Solo Stove Product Detail Page</h3>
+            </a>
+
+            <a class="card-item" href="checkout-redesign.html" data-category="ecommerce">
+              <div class="card"><img src="images/work_card_solo_stove_cart.jpg" alt="Solo Stove Cart"></div>
+              <h3 class="card-title">Solo Stove Cart</h3>
+            </a>
+
+            <a class="card-item" href="category-landing-redesign.html" data-category="ecommerce">
+              <div class="card"><img src="images/work_card_solo_stove_clp.jpg" alt="Solo Stove Category Landing Page"></div>
+              <h3 class="card-title">Solo Stove Category Landing Page</h3>
+            </a>
+
+            <a class="card-item" href="mobile-commerce.html" data-category="ecommerce">
+              <div class="card"><img src="images/work_card_smokeless.jpg" alt="Snoop Dogg Goes Smokeless"></div>
+              <h3 class="card-title">Snoop Dogg Goes Smokeless</h3>
+            </a>
+
+            <a class="card-item" href="navigation-redesign.html" data-category="ecommerce">
+              <div class="card"><img src="images/work_card_solo_stove_navigation.jpg" alt="Navigation Redesign"></div>
+              <h3 class="card-title">Navigation Redesign</h3>
+            </a>
+
+            <!-- Healthcare (gated — clicking the tab opens the password modal) -->
+            <article class="card-item is-hidden" data-category="healthcare">
+              <div class="card"></div>
+              <h3 class="card-title">Project 1</h3>
+            </article>
+
+            <article class="card-item is-hidden" data-category="healthcare">
+              <div class="card"></div>
+              <h3 class="card-title">Project 2</h3>
+            </article>
+
+            <article class="card-item is-hidden" data-category="healthcare">
+              <div class="card"></div>
+              <h3 class="card-title">Project 3</h3>
+            </article>
+
+            <article class="card-item is-hidden" data-category="healthcare">
+              <div class="card"></div>
+              <h3 class="card-title">Project 4</h3>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section class="about" id="about">
+        <div class="about-head">
+          <h2 class="section-label">About</h2>
+        </div>
+        <div class="about-grid">
+          <figure class="about-media">
+            <img src="images/about-portrait.png" alt="Portrait of Luigi Fulinello">
+          </figure>
+          <div class="about-body">
+            <div class="about-block">
+              <h3 class="about-subhead">
+                <svg class="about-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 13V2l8 4-8 4"/><path d="M20.561 10.222a9 9 0 1 1-12.55-5.29"/><path d="M8.002 9.997a5 5 0 1 0 8.9 2.02"/></svg>
+                Big industries, real stakes.
+              </h3>
+              <p>
+                My work spans e-commerce, healthcare payments, and
+                fintech, large industries where the small details matter to people:
+                a checkout that works, a medical bill someone can finally understand, and
+                access to wages someone has spent their days earning. 
+              </p>
+            </div>
+            <div class="about-block">
+              <h3 class="about-subhead">
+                <svg class="about-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15.194 13.707 3.814 1.86-1.86 3.814"/><path d="M16.47214 7.52786 A 5 10 0 1 0 13 21.79796"/><path d="M21.79796 11 A 10 5 0 1 0 19 15.57071"/></svg>
+                Why I made the jump.
+              </h3>
+              <p>
+                I spent years as a designer, and a few months ago I shifted into a
+                PM role to get closer to how AI products actually get built. I wanted
+                to be in the technical decisions, not just the screens. The design
+                background doesn't go anywhere, it's the lens I bring to strategy,
+                flows, and the details many roadmaps skip over. 
+              </p>
+            </div>
+            <div class="about-block">
+              <h3 class="about-subhead">
+                <svg class="about-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 10.42 4.8-5.07"/><path d="M19 18h3"/><path d="M9.5 22 21.414 9.415A2 2 0 0 0 21.2 6.4l-5.61-4.208A1 1 0 0 0 14 3v2a2 2 0 0 1-1.394 1.906L8.677 8.053A1 1 0 0 0 8 9c-.155 6.393-2.082 9-4 9a2 2 0 0 0 0 4h14"/></svg>
+                Outside of work.
+              </h3>
+              <p>
+                You'll find me running, on a tennis court, and getting outdoors with my family. I also enjoy sports, reading, and trying to keep up with my favorite podcasts and newsletters.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Color block footer -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p class="footer-lead">Let's build<br>something.</p>
+        <div class="footer-links">
+          <a href="#work">Work</a>
+          <a href="#about">About</a>
+          <a href="#resume" target="_blank" rel="noopener noreferrer">Resume</a>
+          <a href="https://www.linkedin.com/in/luigifulinello/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
+        <p class="footer-meta">© 2026 Luigi Fulinello</p>
+      </div>
+    </footer>
+
+    <!-- Password protection modal (placeholder) for healthcare projects -->
+    <div class="pw-modal" id="pwModal" hidden>
+      <div class="pw-backdrop" data-pw-close></div>
+      <div class="pw-dialog" role="dialog" aria-modal="true" aria-labelledby="pwTitle">
+        <button class="pw-close" data-pw-close aria-label="Close">&times;</button>
+        <p class="pw-eyebrow">Protected</p>
+        <h2 class="pw-title" id="pwTitle">These case studies are password&nbsp;protected</h2>
+        <p class="pw-text">Enter the password to view, or reach out for access.</p>
+        <form class="pw-form" id="pwForm">
+          <input type="password" class="pw-input" id="pwInput" placeholder="Enter password" aria-label="Password" autocomplete="off">
+          <button type="submit" class="pw-submit">Unlock</button>
+        </form>
+        <p class="pw-error" id="pwError" hidden>Incorrect password. Please try again.</p>
+      </div>
     </div>
-    <script src="js/script.js"></script>
+
+    <script src="js/concept.js"></script>
   </body>
 </html>
