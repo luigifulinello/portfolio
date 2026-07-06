@@ -81,36 +81,26 @@
 
       <!-- ===== Optional: early Impact band (move here when results lead the story) ===== -->
 
-      <!-- ===== 01 SECTION (two-column) ===== -->
-      <section class="cs-section" data-reveal>
-        <div class="cs-wrap cs-cols">
-          <div class="cs-col-label">
-            <span class="cs-index">01</span>
-            <h2 class="cs-label"><Section title></h2>
-          </div>
-          <div class="cs-col-body">
-            <p class="cs-body-lead"><Lead sentence.></p>
-            <p><Supporting copy.></p>
-          </div>
-        </div>
-        <figure class="cs-figure cs-figure--wide" data-reveal>
-          <div class="cs-fig-inner" aria-label="Image placeholder"></div>
-          <figcaption class="cs-caption">Figure 01 — Caption.</figcaption>
-        </figure>
-      </section>
-
-      <!-- ===== Optional: full-bleed statement (word-by-word fill on scroll) ===== -->
+      <!-- ===== APPROACH (full-bleed, word-by-word fill on scroll) =====
+           Beat 2: the strategy / the bet. The intro already carried the
+           challenge, so the story pivots straight to the approach here. -->
       <section class="cs-statement">
         <div class="cs-wrap">
           <p class="cs-eyebrow">Approach</p>
-          <p class="cs-statement-text"><One bold line stating the strategy.></p>
+          <p class="cs-statement-text"><One bold line stating the strategy — the bet that shaped the work.></p>
         </div>
       </section>
 
-      <!-- ===== 02 THE WORK (static grid) ===== -->
+      <!-- ===== SHOWCASE IMAGE — visual payoff after the approach (content width) ===== -->
+      <figure class="cs-figure cs-figure--wide" data-reveal>
+        <div class="cs-fig-inner" aria-label="Image placeholder"></div>
+        <figcaption class="cs-caption">Figure 01 — Caption.</figcaption>
+      </figure>
+
+      <!-- ===== THE WORK (static grid) — beat 3: what shipped ===== -->
       <section class="cs-section" data-reveal>
         <div class="cs-wrap">
-          <h2 class="cs-label cs-label--solo"><span class="cs-index">02</span> The work</h2>
+          <h2 class="cs-label cs-label--solo">The work</h2>
           <div class="cs-grid3">
             <figure class="cs-tile-fig" data-reveal><div class="cs-tile"></div><figcaption class="cs-cap"><Caption.></figcaption></figure>
             <figure class="cs-tile-fig" data-reveal><div class="cs-tile"></div><figcaption class="cs-cap"><Caption.></figcaption></figure>
@@ -128,19 +118,45 @@
       <!--
         OPTIONAL MODULES — drop in where the content calls for them:
 
+        Reflection as a 3-up takeaways grid (swap for the Reflection section above):
+        <div class="cs-takeaways"> … .cs-takeaway (title + text) … </div>
+
         Before/after comparison with revenue bars:
         <div class="cs-compare"> … .cs-compare-col / .cs-compare-col--after … </div>
 
         Phased rollout with status pills:
         <ol class="cs-phases"> … .cs-phase (.cs-status--shipped | .cs-status--next) … </ol>
 
-        Takeaways grid:
-        <div class="cs-takeaways"> … .cs-takeaway (title + text) … </div>
-
         See navigation-redesign.html for full markup of each.
       -->
 
-      <!-- ===== IMPACT ===== -->
+      <!-- ===== REFLECTION (two-column) — beat 4 =====
+           What you learned, what you'd carry forward. Swap in the Takeaways
+           grid (see optional modules above) for a scannable 3-up version. -->
+      <section class="cs-section" data-reveal>
+        <div class="cs-wrap cs-cols">
+          <div class="cs-col-label">
+            <h2 class="cs-label">Reflection</h2>
+          </div>
+          <div class="cs-col-body">
+            <p class="cs-body-lead"><The lesson worth carrying forward.></p>
+            <p><What surprised you, what you'd do differently, the principle this work proved out.></p>
+          </div>
+        </div>
+
+        <!-- Closing gallery (C — Hero + 1×2), tied to the reflection -->
+        <div class="cs-layout-block">
+          <div class="cs-grid-hero2x2">
+            <div class="cs-img--hero"></div>
+            <div class="cs-sub2x2">
+              <div class="cs-img"></div>
+              <div class="cs-img"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== IMPACT — closes the case study ===== -->
       <section class="cs-section cs-impact" data-reveal>
         <div class="cs-wrap">
           <p class="cs-eyebrow">Impact</p>
@@ -169,7 +185,7 @@
     <!-- Footer (shared) -->
     <footer class="site-footer">
       <div class="footer-inner">
-        <p class="footer-lead">Let's build<br>something.</p>
+        <p class="footer-lead">Let's build<br>together.</p>
         <div class="footer-links">
           <a href="index.html#work">Work</a>
           <a href="index.html#about">About</a>

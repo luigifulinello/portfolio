@@ -402,7 +402,9 @@
 }
 
 /* ---------- Impact / metrics ---------- */
-.cs-impact { padding-bottom: clamp(4rem, 12vh, 9rem); }
+/* Closing space sits on whatever section ends the page (Impact or Reflection),
+   so the last section never butts against the footer. */
+.case-study main > section:last-of-type { padding-bottom: clamp(4rem, 12vh, 9rem); }
 .cs-metrics-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -422,11 +424,12 @@
 .cs-val-pre {
   grid-column: 1;
   grid-row: 1;
+  align-self: center;              /* center the sign against the figure */
+  margin-right: 0.14em;            /* a touch of space before the number */
   font-size: clamp(1.1rem, 2.6vw, 2rem);
   font-weight: 800;
   letter-spacing: -0.02em;
   line-height: 1;
-  padding-top: 0.22em;
   color: var(--ink);
 }
 .cs-val-main {
@@ -459,6 +462,41 @@
   color: var(--muted);
   margin-top: 0.85rem;
   max-width: 62ch;
+}
+
+/* Qualitative impact — for when figures aren't available or shareable.
+   Same 3-up rhythm as the metrics grid, but bold outcome statements
+   with an optional directional marker instead of numbers. */
+.cs-outcomes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  margin-top: 1.5rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--ink);
+}
+.cs-outcome {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.cs-outcome-mark {
+  font-size: 1.5rem;
+  line-height: 1;
+  font-weight: 700;
+  color: var(--cs-accent);
+}
+.cs-outcome-title {
+  font-size: clamp(1.25rem, 1.8vw, 1.625rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--ink);
+}
+.cs-outcome-text {
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: #333;
 }
 
 /* ---------- Animations: scroll-reveal + hero ---------- */
@@ -576,6 +614,7 @@
   .cs-cols { grid-template-columns: 1fr; gap: 1.5rem; }
   .cs-col-label { position: static; }
   .cs-metrics-grid { grid-template-columns: 1fr; gap: 1.75rem; }
+  .cs-outcomes { grid-template-columns: 1fr; gap: 1.75rem; }
   .cs-compare { grid-template-columns: 1fr; gap: 2.5rem; }
   .cs-grid3 { grid-template-columns: 1fr; }
   .cs-figure-pair { grid-template-columns: 1fr; }

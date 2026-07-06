@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<!--
+  CASE STUDY SECTIONS REFERENCE — planning page only, not linked from the portfolio.
+  Catalogs the available case-study content sections in arc order, plus optional
+  modules. For image/gallery/hero modules see image-layouts.html.
+-->
+<html lang="en" class="concept">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Case Study Sections — Reference</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/concept.css">
+    <link rel="stylesheet" href="css/case-study.css">
+    <style>
+      /* Reference page chrome — not for production */
+      .ref-wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--edge); }
+      .ref-page-head {
+        padding: clamp(3rem, 8vh, 6rem) 0 clamp(2rem, 5vh, 3.5rem);
+        border-bottom: 2px solid var(--ink);
+        margin-bottom: clamp(3rem, 8vh, 6rem);
+      }
+      .ref-page-label {
+        font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+        letter-spacing: 0.14em; color: var(--muted); margin-bottom: 0.75rem;
+      }
+      .ref-page-title { font-size: clamp(2rem, 5vw, 4rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; }
+      .ref-page-desc { margin-top: 1rem; font-size: clamp(0.9375rem, 1.2vw, 1.0625rem); color: var(--muted); max-width: 60ch; line-height: 1.55; }
+      .ref-block {
+        padding-bottom: clamp(3.5rem, 9vh, 6rem);
+        border-bottom: 1px solid var(--line);
+        margin-bottom: clamp(3.5rem, 9vh, 6rem);
+      }
+      .ref-block:last-child { border-bottom: none; }
+      .ref-block-head { margin-bottom: clamp(1.75rem, 4vh, 2.75rem); }
+      .ref-layout-name { font-size: clamp(1.375rem, 2.2vw, 1.875rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+      .ref-layout-name .ref-tag {
+        display: inline-block; vertical-align: middle; margin-left: 0.6rem;
+        font-size: 0.625rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+        color: var(--paper); background: var(--ink); padding: 0.2rem 0.5rem; border-radius: 999px;
+      }
+      .ref-layout-name .ref-tag--new { background: #FF6C33; }
+      .ref-specs { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin-top: 0.65rem; }
+      .ref-spec { font-size: 0.8125rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+      .ref-spec strong { color: var(--ink); font-weight: 700; }
+      .ref-desc { margin-top: 0.85rem; font-size: 0.9375rem; color: var(--muted); max-width: 62ch; line-height: 1.55; }
+      .ref-desc code { background: #f0f0f0; padding: 0.05em 0.35em; border-radius: 3px; font-size: 0.85em; }
+      /* Live example frame */
+      .ref-example { border: 1px solid var(--line); padding: clamp(1.5rem, 4vw, 3rem); margin-top: 1.75rem; }
+    </style>
+  </head>
+  <body class="concept case-study">
+
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="index.html" class="wordmark">Luigi&nbsp;Fulinello</a>
+        <nav class="site-nav">
+          <a href="index.html#work">Work</a>
+          <a href="image-layouts.html">Image Layouts</a>
+          <a href="case-study-template.html">CS Template</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <div class="ref-wrap">
+
+        <div class="ref-page-head">
+          <p class="ref-page-label">Planning reference</p>
+          <h1 class="ref-page-title">Case Study Sections</h1>
+          <p class="ref-page-desc">
+            The available content sections in narrative order —
+            Overview → Approach → Showcase → The Work → Reflection → Impact — plus
+            optional modules. Two Impact variants: quantitative (figures) and a
+            qualitative version for when numbers aren't shareable. For image,
+            gallery, and hero modules see <a href="image-layouts.html">Image Layouts</a>.
+          </p>
+        </div>
+
+        <!-- ===================== MASTHEAD ===================== -->
+        <div class="ref-block">
+          <div class="ref-block-head">
+            <h2 class="ref-layout-name">Masthead</h2>
+            <div class="ref-specs"><span class="ref-spec">Classes: <strong>.cs-crumbs · .cs-headline · .cs-tagline</strong></span></div>
+            <p class="ref-desc">Opens the page: breadcrumb, project headline, and a one-sentence summary. Followed by the full-bleed hero (see Image Layouts → Case Study Hero).</p>
+          </div>
+          <div class="ref-example">
+            <nav class="cs-crumbs" aria-label="Breadcrumb">
+              <a href="#">Work</a><span class="cs-crumb-sep" aria-hidden="true">/</span>
+              <a href="#">E-commerce</a><span class="cs-crumb-sep" aria-hidden="true">/</span>
+              <span class="cs-crumb-current" aria-current="page">Project</span>
+            </nav>
+            <h1 class="cs-headline">Project title goes here</h1>
+            <p class="cs-tagline">One-sentence summary of the work and the outcome it drove.</p>
+          </div>
+        </div>
+
+        <!-- ===================== OVERVIEW ===================== -->
+        <div class="ref-block">
+          <div class="ref-block-head">
+            <h2 class="ref-layout-name">Overview</h2>
+            <div class="ref-specs"><span class="ref-spec">Classes: <strong>.cs-intro-grid · .cs-meta · .cs-intro-body</strong></span></div>
+            <p class="ref-desc">Sticky two-column intro. Left holds the metadata (Company · Role · Focus · Team) and stays pinned while the right editorial column scrolls past. Carries the context <em>and</em> the challenge, so there's no separate Challenge section.</p>
+          </div>
+          <div class="ref-example">
+            <div class="cs-intro-grid">
+              <aside class="cs-intro-aside">
+                <p class="cs-eyebrow">Overview</p>
+                <dl class="cs-meta">
+                  <div class="cs-meta-item"><dt>Company</dt><dd>Placeholder Co.</dd></div>
+                  <div class="cs-meta-item"><dt>Role</dt><dd>Product Designer &amp; Manager</dd></div>
+                  <div class="cs-meta-item"><dt>Focus</dt><dd>UX/UI, Strategy</dd></div>
+                  <div class="cs-meta-item"><dt>Team</dt><dd>Design, Engineering</dd></div>
+                </dl>
+              </aside>
+              <div class="cs-intro-body">
+                <p class="cs-intro-lead">A strong opening sentence — the problem and the stakes.</p>
+                <p>Context paragraph that frames where this sat in the business and why the existing experience got in the way.</p>
+                <p>Enough narrative that this column scrolls past the sticky metadata on the left before the standard sections take over.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===================== APPROACH ===================== -->
+        <div class="ref-block">
+          <div class="ref-block-head">
+            <h2 class="ref-layout-name">Approach</h2>
+            <div class="ref-specs"><span class="ref-spec">Classes: <strong>.cs-statement · .cs-statement-text</strong></span></div>
+            <p class="ref-desc">The strategy beat — one bold line stating the bet. On the live page the words fill from gray to ink word-by-word as you scroll (shown here fully filled).</p>
+          </div>
+          <div class="ref-example">
+            <p class="cs-eyebrow">Approach</p>
+            <p class="cs-statement-text">One bold line stating the strategy — the single idea that shaped the work.</p>
+          </div>
+        </div>
+
+        <!-- ===================== THE WORK ===================== -->
+        <div class="ref-block">
+          <div class="ref-block-head">
+            <h2 class="ref-layout-name">The Work</h2>
+            <div class="ref-specs"><span class="ref-spec">Classes: <strong>.cs-label--solo · .cs-grid3 · .cs-tile</strong></span></div>
+            <p class="ref-desc">What shipped — a three-up grid of captioned tiles (4:3). See Image Layouts → Three-Column Grid for export sizes.</p>
+          </div>
+          <div class="ref-example">
+            <h2 class="cs-label cs-label--solo">The work</h2>
+            <div class="cs-grid3">
+              <figure class="cs-tile-fig"><div class="cs-tile"></div><figcaption class="cs-cap">Caption.</figcaption></figure>
+              <figure class="cs-tile-fig"><div class="cs-tile"></div><figcaption class="cs-cap">Caption.</figcaption></figure>
+              <figure class="cs-tile-fig"><div class="cs-tile"></div><figcaption class="cs-cap">Caption.</figcaption></figure>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===================== REFLECTION ===================== -->
+        <div class="ref-block">
+          <div class="ref-block-head">
+            <h2 class="ref-layout-name">Reflection</h2>
+            <div class="ref-specs"><span class="ref-spec">Classes: <strong>.cs-cols · .cs-label · .cs-col-body</strong></span></div>
+            <p class="ref-desc">The closer — what you learned and would carry forward. Often ends with a closing gallery (Image Layouts → Hero + 1×2) tucked directly beneath the copy.</p>
+          </div>
+          <div class="ref-example">
+            <div class="cs-cols">
+              <div class="cs-col-label"><h2 class="cs-label">Reflection</h2></div>
+              <div class="cs-col-body">
+                <p class="cs-body-lead">The lesson worth carrying forward.</p>
+                <p>What surprised you, what you'd do differently, and the principle this work proved out.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===================== IMPACT — QUANTITATIVE ===================== -->
+        <div class="ref-block">
+          <div class="ref-block-head">
+            <h2 class="ref-layout-name">Impact — Quantitative</h2>
+            <div class="ref-specs"><span class="ref-spec">Classes: <strong>.cs-metrics-grid · .cs-metric</strong></span></div>
+            <p class="ref-desc">The default results block — up to three figures with a prefix (+/−), the number, and a label. Use when the metrics are available and shareable.</p>
+          </div>
+          <div class="ref-example">
+            <p class="cs-eyebrow">Impact</p>
+            <div class="cs-metrics-grid">
+              <div class="cs-metric"><span class="cs-val-pre">+</span><span class="cs-val-main">18<span class="cs-val-suf">%</span></span><span class="cs-metric-label">Add to Cart rate</span></div>
+              <div class="cs-metric"><span class="cs-val-pre">+</span><span class="cs-val-main">12<span class="cs-val-suf">%</span></span><span class="cs-metric-label">PDP conversion</span></div>
+              <div class="cs-metric"><span class="cs-val-pre">−</span><span class="cs-val-main">22<span class="cs-val-suf">%</span></span><span class="cs-metric-label">Bounce rate</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===================== IMPACT — QUALITATIVE ===================== -->
+        <div class="ref-block">
+          <div class="ref-block-head">
+            <h2 class="ref-layout-name">Impact — Qualitative <span class="ref-tag ref-tag--new">New</span></h2>
+            <div class="ref-specs"><span class="ref-spec">Classes: <strong>.cs-outcomes · .cs-outcome</strong></span></div>
+            <p class="ref-desc">For when figures aren't available or shareable (NDA, pre-launch, confidential). Same three-up rhythm as the metrics block, but bold outcome statements with an optional directional marker (<code>↑ ↓ →</code>) instead of numbers. The marker uses the case study's brand accent.</p>
+          </div>
+          <div class="ref-example">
+            <p class="cs-eyebrow">Impact</p>
+            <div class="cs-outcomes">
+              <div class="cs-outcome">
+                <span class="cs-outcome-mark">↑</span>
+                <h3 class="cs-outcome-title">Faster path to purchase</h3>
+                <p class="cs-outcome-text">Shoppers reached the buy box with fewer detours — confirmed in session replays and moderated tests.</p>
+              </div>
+              <div class="cs-outcome">
+                <span class="cs-outcome-mark">→</span>
+                <h3 class="cs-outcome-title">Adopted as the standard</h3>
+                <p class="cs-outcome-text">The pattern rolled out across the brand portfolio and became the default for new product pages.</p>
+              </div>
+              <div class="cs-outcome">
+                <span class="cs-outcome-mark">↓</span>
+                <h3 class="cs-outcome-title">Fewer support tickets</h3>
+                <p class="cs-outcome-text">Clearer information and expectations cut the "where do I…" questions reaching the support team.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===================== OPTIONAL: TAKEAWAYS ===================== -->
+        <div class="ref-block">
+          <div class="ref-block-head">
+            <h2 class="ref-layout-name">Takeaways <span class="ref-tag">Optional</span></h2>
+            <div class="ref-specs"><span class="ref-spec">Classes: <strong>.cs-takeaways · .cs-takeaway</strong></span></div>
+            <p class="ref-desc">A scannable 3-up alternative to the Reflection prose — three crisp lessons.</p>
+          </div>
+          <div class="ref-example">
+            <div class="cs-takeaways">
+              <div class="cs-takeaway"><h3 class="cs-takeaway-title">Ship the cheapest win first</h3><p class="cs-takeaway-text">Early, low-cost wins earn the trust to fund the harder work.</p></div>
+              <div class="cs-takeaway"><h3 class="cs-takeaway-title">Speak in the data leaders own</h3><p class="cs-takeaway-text">Framing recommendations in revenue terms gets them approved.</p></div>
+              <div class="cs-takeaway"><h3 class="cs-takeaway-title">Constraints sharpen scope</h3><p class="cs-takeaway-text">Fewer resources force a cleaner, more ruthless set of changes.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===================== OPTIONAL: COMPARISON ===================== -->
+        <div class="ref-block">
+          <div class="ref-block-head">
+            <h2 class="ref-layout-name">Comparison <span class="ref-tag">Optional</span></h2>
+            <div class="ref-specs"><span class="ref-spec">Classes: <strong>.cs-compare · .cs-compare-col--after</strong></span></div>
+            <p class="ref-desc">Before/after side-by-side with revenue bars — the "after" column picks up the brand accent.</p>
+          </div>
+          <div class="ref-example">
+            <div class="cs-compare">
+              <div class="cs-compare-col">
+                <div class="cs-compare-head"><span class="cs-compare-title">Before</span><span class="cs-compare-sub">As shipped</span></div>
+                <ul class="cs-compare-list">
+                  <li class="cs-compare-row"><div class="cs-compare-line"><span class="cs-compare-cat">New Arrivals</span><span class="cs-compare-rev">6%</span></div><span class="cs-bar"><span style="width:19%"></span></span></li>
+                  <li class="cs-compare-row"><div class="cs-compare-line"><span class="cs-compare-cat">Accessories</span><span class="cs-compare-rev">9%</span></div><span class="cs-bar"><span style="width:29%"></span></span></li>
+                  <li class="cs-compare-row"><div class="cs-compare-line"><span class="cs-compare-cat">Apparel</span><span class="cs-compare-rev">31%</span></div><span class="cs-bar"><span style="width:100%"></span></span></li>
+                </ul>
+              </div>
+              <div class="cs-compare-col cs-compare-col--after">
+                <div class="cs-compare-head"><span class="cs-compare-title">After</span><span class="cs-compare-sub">By revenue</span></div>
+                <ul class="cs-compare-list">
+                  <li class="cs-compare-row"><div class="cs-compare-line"><span class="cs-compare-cat">Apparel</span><span class="cs-compare-rev">31%</span></div><span class="cs-bar"><span style="width:100%"></span></span></li>
+                  <li class="cs-compare-row"><div class="cs-compare-line"><span class="cs-compare-cat">Footwear</span><span class="cs-compare-rev">24%</span></div><span class="cs-bar"><span style="width:77%"></span></span></li>
+                  <li class="cs-compare-row"><div class="cs-compare-line"><span class="cs-compare-cat">Accessories</span><span class="cs-compare-rev">9%</span></div><span class="cs-bar"><span style="width:29%"></span></span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===================== OPTIONAL: PHASED ROLLOUT ===================== -->
+        <div class="ref-block">
+          <div class="ref-block-head">
+            <h2 class="ref-layout-name">Phased Rollout <span class="ref-tag">Optional</span></h2>
+            <div class="ref-specs"><span class="ref-spec">Classes: <strong>.cs-phases · .cs-status--shipped · .cs-status--next</strong></span></div>
+            <p class="ref-desc">A numbered list of phases with status pills — useful when the work shipped in stages.</p>
+          </div>
+          <div class="ref-example">
+            <ol class="cs-phases">
+              <li class="cs-phase">
+                <span class="cs-phase-num">01</span>
+                <div class="cs-phase-body">
+                  <div class="cs-phase-head"><h3 class="cs-phase-title">Accessibility &amp; usability</h3><span class="cs-status cs-status--shipped">Shipped</span></div>
+                  <p class="cs-phase-desc">The cheapest win to ship — and the one that earned the trust to do the rest.</p>
+                </div>
+              </li>
+              <li class="cs-phase">
+                <span class="cs-phase-num">02</span>
+                <div class="cs-phase-body">
+                  <div class="cs-phase-head"><h3 class="cs-phase-title">Hierarchy &amp; IA</h3><span class="cs-status cs-status--shipped">Shipped</span></div>
+                  <p class="cs-phase-desc">Reordered categories to match business priority, checked against how customers browse.</p>
+                </div>
+              </li>
+              <li class="cs-phase">
+                <span class="cs-phase-num">03</span>
+                <div class="cs-phase-body">
+                  <div class="cs-phase-head"><h3 class="cs-phase-title">Premium visual system</h3><span class="cs-status cs-status--next">Next</span></div>
+                  <p class="cs-phase-desc">A refined type scale, more generous spacing, and considered imagery throughout.</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p class="footer-lead">Let's build<br>together.</p>
+        <div class="footer-links">
+          <a href="index.html#work">Work</a>
+          <a href="image-layouts.html">Image Layouts</a>
+        </div>
+        <p class="footer-meta">© 2026 Luigi Fulinello</p>
+      </div>
+    </footer>
+
+  </body>
+</html>
