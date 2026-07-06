@@ -113,35 +113,21 @@
     updateButtons();
   }
 
-  // ---------- Work card parallax — images drift gently within their frame ----------
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const parallaxImgs = Array.from(document.querySelectorAll('.card img'));
-
-  if (!reduceMotion && parallaxImgs.length) {
-    const RANGE = 0.11; // fraction of card height the image travels each direction
-    let ticking = false;
-
-    function applyParallax() {
-      ticking = false;
-      const vh = window.innerHeight;
-      for (const img of parallaxImgs) {
-        const card = img.parentElement;
-        const rect = card.getBoundingClientRect();
-        if (rect.bottom < 0 || rect.top > vh) continue; // skip offscreen cards
-        // -1 as the card exits the top, +1 as it enters from the bottom
-        const center = rect.top + rect.height / 2;
-        const norm = (center - vh / 2) / (vh / 2 + rect.height / 2);
-        const clamped = Math.max(-1, Math.min(1, norm));
-        img.style.setProperty('--parallax', (clamped * rect.height * RANGE).toFixed(2) + 'px');
-      }
-    }
-
-    function onParallaxScroll() {
-      if (!ticking) { ticking = true; requestAnimationFrame(applyParallax); }
-    }
-
-    window.addEventListener('scroll', onParallaxScroll, { passive: true });
-    window.addEventListener('resize', onParallaxScroll);
-    applyParallax(); // set initial offsets
+  // ---------- Section intro reveal ----------
+  // Adds .is-in when a section scrolls into view; fires on load for sections
+  // already visible (e.g. Selected Work near the top). CSS handles the motion.
+  const revealSections = document.querySelectorAll('.work, .about');
+  if ('IntersectionObserver' in window && revealSections.length) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealSections.forEach((s) => io.observe(s));
+  } else {
+    revealSections.forEach((s) => s.classList.add('is-in'));
   }
 })();
