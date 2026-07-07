@@ -116,9 +116,12 @@
           <p class="ref-page-desc">
             Drop-in image layout blocks for case study sections, plus the built-in
             case-study page modules (hero, three-column grid). Each includes a
-            recommended export size (2× the largest on-screen render, so it stays
-            crisp on retina). Images use <code>object-fit: cover</code>, so match the
-            listed aspect ratio and the frame handles the rest.
+            recommended export size (2× the largest on-screen render, crisp on
+            retina) and a minimum (~1× — the floor for looking sharp on standard
+            displays; fine to use when a source isn't available larger, but never
+            upscale). Aspect ratio matters most: images use
+            <code>object-fit: cover</code>, so match the listed ratio and the frame
+            handles the rest.
           </p>
         </div>
 
@@ -132,6 +135,7 @@
               <span class="ref-spec">Rows: <strong>2</strong></span>
               <span class="ref-spec">Ratio: <strong>4:3 each</strong></span>
               <span class="ref-spec">Export: <strong>1600 × 1200</strong></span>
+              <span class="ref-spec">Min: <strong>750 × 565</strong></span>
               <span class="ref-spec">Class: <strong>.cs-grid2x2</strong></span>
             </div>
             <div class="ref-snippet">&lt;div class="cs-layout-block"&gt;
@@ -164,6 +168,7 @@
               <span class="ref-spec">Rows: <strong>1</strong></span>
               <span class="ref-spec">Ratio: <strong>16:9 each</strong></span>
               <span class="ref-spec">Export: <strong>1600 × 900</strong></span>
+              <span class="ref-spec">Min: <strong>750 × 420</strong></span>
               <span class="ref-spec">Class: <strong>.cs-grid1x2</strong></span>
             </div>
             <div class="ref-snippet">&lt;div class="cs-layout-block"&gt;
@@ -191,7 +196,9 @@
               <span class="ref-spec">Hero ratio: <strong>16:7</strong></span>
               <span class="ref-spec">Sub ratio: <strong>4:3 each</strong></span>
               <span class="ref-spec">Hero export: <strong>2400 × 1050</strong></span>
+              <span class="ref-spec">Hero min: <strong>1300 × 570</strong></span>
               <span class="ref-spec">Sub export: <strong>1600 × 1200</strong></span>
+              <span class="ref-spec">Sub min: <strong>750 × 565</strong></span>
               <span class="ref-spec">Class: <strong>.cs-grid-hero2x2</strong></span>
             </div>
             <div class="ref-snippet">&lt;div class="cs-layout-block"&gt;
@@ -224,6 +231,7 @@
               <span class="ref-spec">Images: <strong>1</strong></span>
               <span class="ref-spec">Ratio: <strong>~21:9 full-bleed</strong></span>
               <span class="ref-spec">Export: <strong>2800 × 1200</strong></span>
+              <span class="ref-spec">Min: <strong>1440 × 620</strong></span>
               <span class="ref-spec">Class: <strong>.cs-hero</strong></span>
             </div>
             <p class="ref-page-desc" style="margin-top:0.85rem">
@@ -243,15 +251,46 @@
           </div>
         </div>
 
-        <!-- ===================== E: THREE-COLUMN GRID ===================== -->
+        <!-- ===================== E: SHOWCASE FIGURE (single, content width) ===================== -->
         <div class="ref-block">
           <div class="ref-block-head">
-            <h2 class="ref-layout-name">E — Three-Column Grid</h2>
+            <h2 class="ref-layout-name">E — Showcase Figure</h2>
+            <div class="ref-specs">
+              <span class="ref-spec">Images: <strong>1</strong></span>
+              <span class="ref-spec">Ratio: <strong>16:9</strong></span>
+              <span class="ref-spec">Export: <strong>2400 × 1350</strong></span>
+              <span class="ref-spec">Min: <strong>1520 × 855</strong></span>
+              <span class="ref-spec">Class: <strong>.cs-figure--wide</strong></span>
+            </div>
+            <p class="ref-page-desc" style="margin-top:0.85rem">
+              The single content-width image with a caption below — used as the
+              visual payoff right after the Approach statement on case study pages.
+              Aligns with the header and body text, not full-bleed.
+            </p>
+            <div class="ref-snippet">&lt;figure class="cs-figure cs-figure--wide" data-reveal&gt;
+  &lt;div class="cs-fig-inner"&gt;&lt;img src="..." alt="..."&gt;&lt;/div&gt;
+  &lt;figcaption class="cs-caption"&gt;Caption.&lt;/figcaption&gt;
+&lt;/figure&gt;</div>
+          </div>
+
+          <div class="cs-layout-block" style="margin-top:1.75rem">
+            <figure class="cs-figure cs-figure--wide" style="padding:0; margin:0; width:100%">
+              <div class="cs-fig-inner"></div>
+              <figcaption class="cs-caption">Caption.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <!-- ===================== F: THREE-COLUMN GRID ===================== -->
+        <div class="ref-block">
+          <div class="ref-block-head">
+            <h2 class="ref-layout-name">F — Three-Column Grid</h2>
             <div class="ref-specs">
               <span class="ref-spec">Images: <strong>3</strong></span>
               <span class="ref-spec">Columns: <strong>3</strong></span>
               <span class="ref-spec">Ratio: <strong>4:3 each</strong></span>
               <span class="ref-spec">Export: <strong>1200 × 900</strong></span>
+              <span class="ref-spec">Min: <strong>500 × 375</strong></span>
               <span class="ref-spec">Class: <strong>.cs-grid3</strong></span>
             </div>
             <p class="ref-page-desc" style="margin-top:0.85rem">

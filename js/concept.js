@@ -116,7 +116,38 @@
   // ---------- Section intro reveal ----------
   // Adds .is-in when a section scrolls into view; fires on load for sections
   // already visible (e.g. Selected Work near the top). CSS handles the motion.
-  const revealSections = document.querySelectorAll('.work, .about');
+  // .has-reveal gates the initial hidden state so script-less pages stay visible.
+  document.documentElement.classList.add('has-reveal');
+
+  // Footer lead: wrap words in spans (preserving <br>) and stagger delays so
+  // it builds left -> right, first line then second (see concept.css).
+  const footerLead = document.querySelector('.footer-lead');
+  if (footerLead) {
+    const lines = footerLead.innerHTML
+      .split(/<br\s*\/?>/i)
+      .map((html) => {
+        const tmp = document.createElement('div');
+        tmp.innerHTML = html;
+        return tmp.textContent.trim();
+      })
+      .filter(Boolean);
+    footerLead.textContent = '';
+    let wi = 0;
+    lines.forEach((line, li) => {
+      if (li > 0) footerLead.appendChild(document.createElement('br'));
+      const words = line.split(/\s+/);
+      words.forEach((w, i) => {
+        const span = document.createElement('span');
+        span.className = 'fl-word';
+        span.textContent = w;
+        span.style.transitionDelay = (wi * 0.12 + li * 0.15).toFixed(2) + 's';
+        footerLead.appendChild(span);
+        if (i < words.length - 1) footerLead.appendChild(document.createTextNode(' '));
+        wi++;
+      });
+    });
+  }
+  const revealSections = document.querySelectorAll('.work, .about, .site-footer');
   if ('IntersectionObserver' in window && revealSections.length) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {

@@ -5,7 +5,40 @@
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // --- Scroll-reveal content ---
-  const els = document.querySelectorAll('[data-reveal]');
+  // .has-reveal gates the footer's initial hidden state (see concept.css);
+  // pages without a script keep a fully visible footer.
+  document.documentElement.classList.add('has-reveal');
+
+  // Footer lead: wrap words in spans (preserving <br>) and stagger delays so
+  // it builds left -> right, first line then second (see concept.css).
+  const footerLead = document.querySelector('.footer-lead');
+  if (footerLead) {
+    const flLines = footerLead.innerHTML
+      .split(/<br\s*\/?>/i)
+      .map((html) => {
+        const tmp = document.createElement('div');
+        tmp.innerHTML = html;
+        return tmp.textContent.trim();
+      })
+      .filter(Boolean);
+    footerLead.textContent = '';
+    let wi = 0;
+    flLines.forEach((line, li) => {
+      if (li > 0) footerLead.appendChild(document.createElement('br'));
+      const words = line.split(/\s+/);
+      words.forEach((w, i) => {
+        const span = document.createElement('span');
+        span.className = 'fl-word';
+        span.textContent = w;
+        span.style.transitionDelay = (wi * 0.12 + li * 0.15).toFixed(2) + 's';
+        footerLead.appendChild(span);
+        if (i < words.length - 1) footerLead.appendChild(document.createTextNode(' '));
+        wi++;
+      });
+    });
+  }
+
+  const els = document.querySelectorAll('[data-reveal], .site-footer');
   if (els.length) {
     if (reduce) {
       els.forEach((el) => el.classList.add('is-in'));
@@ -59,15 +92,28 @@
   };
 
   document.querySelectorAll('.cs-statement-text').forEach((el) => {
-    const words = el.textContent.trim().split(/\s+/);
+    // Split on <br> first so authored line breaks survive the word-span rebuild
+    const lines = el.innerHTML
+      .split(/<br\s*\/?>/i)
+      .map((html) => {
+        const tmp = document.createElement('div');
+        tmp.innerHTML = html;
+        return tmp.textContent.trim();
+      })
+      .filter(Boolean);
     el.textContent = '';
-    const spans = words.map((w, i) => {
-      const span = document.createElement('span');
-      span.className = 'cs-word';
-      span.textContent = w;
-      el.appendChild(span);
-      if (i < words.length - 1) el.appendChild(document.createTextNode(' '));
-      return span;
+    const spans = [];
+    lines.forEach((line, li) => {
+      if (li > 0) el.appendChild(document.createElement('br'));
+      const words = line.split(/\s+/);
+      words.forEach((w, i) => {
+        const span = document.createElement('span');
+        span.className = 'cs-word';
+        span.textContent = w;
+        el.appendChild(span);
+        if (i < words.length - 1) el.appendChild(document.createTextNode(' '));
+        spans.push(span);
+      });
     });
 
     if (reduce) {

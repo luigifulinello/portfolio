@@ -308,11 +308,16 @@ body.concept a {
 .about-body { grid-column: 3 / 5; }
 .about-media {
   margin: 0;
-  aspect-ratio: 3 / 4;
+  /* Stretch to the height of the text column; the absolutely-positioned
+     img keeps the figure from contributing height of its own. */
+  align-self: stretch;
+  position: relative;
   background: var(--placeholder);
   overflow: hidden;
 }
 .about-media img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -393,6 +398,33 @@ body.concept a {
   .about.is-in .about-block:nth-child(2) { transition-delay: 0.28s; }
   .about.is-in .about-block:nth-child(3) { transition-delay: 0.38s; }
   .about.is-in .about-block:nth-child(4) { transition-delay: 0.48s; }
+
+  /* Footer — the lead builds word-by-word (left→right, line by line; delays
+     set inline by JS) and the links rise in. Gated on .has-reveal (set by JS)
+     so pages without a script keep a fully visible footer. */
+  .footer-lead .fl-word { display: inline-block; }
+  .has-reveal .footer-lead .fl-word {
+    opacity: 0;
+    transform: translateY(0.6em);
+    transition: opacity 0.55s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .has-reveal .site-footer.is-in .footer-lead .fl-word {
+    opacity: 1;
+    transform: none;
+  }
+  .has-reveal .footer-links a {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .has-reveal .site-footer.is-in .footer-links a {
+    opacity: 1;
+    transform: none;
+  }
+  .has-reveal .site-footer.is-in .footer-links a:nth-child(1) { transition-delay: 0.30s; }
+  .has-reveal .site-footer.is-in .footer-links a:nth-child(2) { transition-delay: 0.38s; }
+  .has-reveal .site-footer.is-in .footer-links a:nth-child(3) { transition-delay: 0.46s; }
+  .has-reveal .site-footer.is-in .footer-links a:nth-child(4) { transition-delay: 0.54s; }
 }
 
 /* ---------- Responsive ---------- */
@@ -405,7 +437,7 @@ body.concept a {
 
 @media (max-width: 760px) {
   .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-  .about-media { grid-column: 1 / -1; max-width: 24rem; }
+  .about-media { grid-column: 1 / -1; max-width: 24rem; align-self: start; aspect-ratio: 3 / 4; }
   .about-body { grid-column: 1 / -1; }
 }
 
