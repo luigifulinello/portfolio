@@ -255,6 +255,9 @@
   letter-spacing: -0.025em;
   max-width: 22ch;
 }
+/* Waystar: statement runs two sentences — a wider measure lets the lines
+   fill out and keeps the last line from orphaning at either font render */
+.cs-page--waystar .cs-statement-text { max-width: 26ch; }
 /* Words start gray; js/case-study.js fills them to ink word-by-word on scroll */
 .cs-word { color: #cdcdcd; }
 @media (prefers-reduced-motion: no-preference) {
