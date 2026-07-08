@@ -448,6 +448,9 @@ body.concept a {
   .footer-links { min-width: 0; }
   .footer-links a { text-align: left; }
   .hero-br { display: none; }
+  /* Breaks are hidden here so the title wraps naturally — loosen the tight
+     desktop leading so the wrapped lines don't feel cramped. */
+  .hero-title { line-height: 1.18; }
 }
 
 /* ---------- Password modal (placeholder) ---------- */
