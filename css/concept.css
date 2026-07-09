@@ -12,7 +12,7 @@
   --line: #e3e3e3;
   --accent: #f4263a;       /* bold modern red */
   --accent-ink: #ffffff;
-  --placeholder: #e8e8e8;  /* light gray for cards & image placeholders */
+  --placeholder: #F6F6F6;  /* light gray for cards & image placeholders — matches exported image backgrounds */
 
   --edge: clamp(1.25rem, 5vw, 5rem);   /* page gutter */
   --maxw: 1680px;

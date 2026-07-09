@@ -283,7 +283,8 @@
   width: 100%;
   overflow: hidden;
 }
-.cs-tile img {
+.cs-tile img,
+.cs-tile video {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -618,6 +619,10 @@
   object-fit: cover;
   display: block;
 }
+/* For assets that must stay whole (tweets, UI with text) — show the full
+   image letterboxed on the tile background instead of cropping to fill.
+   Scoped to the gallery chain so it beats the .cs-img img cover rule above. */
+.cs-grid-hero2x2 .cs-sub2x2 .cs-img--contain img { object-fit: contain; padding: clamp(0.75rem, 2vw, 1.5rem); }
 
 /* Shared wrapper: constrains all layout modules to content width */
 .cs-layout-block {
