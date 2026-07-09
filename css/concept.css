@@ -266,12 +266,16 @@ body.concept a {
 }
 
 /* Right-aligned stacked rows */
+/* Shrink-wrapped + right-aligned so the hover underline hugs the text,
+   matching the header's border-bottom underline (text-decoration is reset
+   site-wide by `body.concept a`, so links underline via border like the nav). */
 .footer-links a {
-  text-align: right;
+  align-self: flex-end;
   padding: 0.5rem 0;
-  transition: color 0.18s ease, padding-right 0.18s ease;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.18s ease;
 }
-.footer-links a:hover { color: rgba(255, 255, 255, 0.65); padding-right: 0.35rem; }
+.footer-links a:hover { border-color: currentColor; }
 
 .footer-meta {
   grid-column: 1 / -1;

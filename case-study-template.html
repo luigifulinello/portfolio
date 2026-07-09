@@ -2,10 +2,10 @@
 <!--
   CASE STUDY TEMPLATE — copy this file to <project-slug>.html and fill in.
   1. Rename the file to the kebab-case project slug.
-  2. Set the body class modifiers:
+  2. Set the body class modifier:
        cs-page--<slug>   (per-page overrides)
-       cs-cat--<category>  (brand accent — e.g. cs-cat--ecommerce makes the
-                            section eyebrows orange; omit to keep them black)
+     Section eyebrows are black by default. (A cs-cat--<category> accent
+     class exists in the CSS but is currently unused — leave it off.)
   3. Replace <TITLE>, breadcrumb, metadata, and section content.
   4. Add a linked card on index.html that points here.
   All layout/behavior comes from css/case-study.css + js/case-study.js.
@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="css/concept.css">
     <link rel="stylesheet" href="css/case-study.css">
   </head>
-  <body class="concept case-study cs-page--SLUG cs-cat--CATEGORY">
+  <body class="concept case-study cs-page--SLUG">
 
     <!-- Header (shared) -->
     <header class="site-header">
