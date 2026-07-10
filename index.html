@@ -41,7 +41,7 @@
             <h2 class="section-label">Selected Work</h2>
             <div class="tabs" role="tablist" aria-label="Filter work by industry">
               <button class="tab is-active" data-filter="ecommerce" role="tab" aria-selected="true">E-commerce</button>
-              <button class="tab" data-filter="healthcare" role="tab" aria-selected="false">Healthcare</button>
+              <a class="tab" href="waystar.html" data-filter="healthcare">Healthcare</a>
             </div>
           </div>
         </div>
@@ -67,27 +67,6 @@
               <div class="card"><img src="images/work_card_solo_stove_clp.jpg" alt="Solo Stove Category Landing Page"></div>
               <h3 class="card-title">Solo Stove Product Listing Page</h3>
             </a>
-
-            <!-- Healthcare (gated — clicking the tab opens the password modal) -->
-            <article class="card-item is-hidden" data-category="healthcare">
-              <div class="card"></div>
-              <h3 class="card-title">Project 1</h3>
-            </article>
-
-            <article class="card-item is-hidden" data-category="healthcare">
-              <div class="card"></div>
-              <h3 class="card-title">Project 2</h3>
-            </article>
-
-            <article class="card-item is-hidden" data-category="healthcare">
-              <div class="card"></div>
-              <h3 class="card-title">Project 3</h3>
-            </article>
-
-            <article class="card-item is-hidden" data-category="healthcare">
-              <div class="card"></div>
-              <h3 class="card-title">Project 4</h3>
-            </article>
           </div>
         </div>
       </section>
@@ -156,22 +135,6 @@
         <p class="footer-meta">© 2026 Luigi Fulinello</p>
       </div>
     </footer>
-
-    <!-- Password protection modal (placeholder) for healthcare projects -->
-    <div class="pw-modal" id="pwModal" hidden>
-      <div class="pw-backdrop" data-pw-close></div>
-      <div class="pw-dialog" role="dialog" aria-modal="true" aria-labelledby="pwTitle">
-        <button class="pw-close" data-pw-close aria-label="Close">&times;</button>
-        <p class="pw-eyebrow">Protected</p>
-        <h2 class="pw-title" id="pwTitle">These case studies are password&nbsp;protected</h2>
-        <p class="pw-text">Enter the password to view, or reach out for access.</p>
-        <form class="pw-form" id="pwForm">
-          <input type="password" class="pw-input" id="pwInput" placeholder="Enter password" aria-label="Password" autocomplete="off">
-          <button type="submit" class="pw-submit">Unlock</button>
-        </form>
-        <p class="pw-error" id="pwError" hidden>Incorrect password. Please try again.</p>
-      </div>
-    </div>
 
     <script src="js/concept.js"></script>
   </body>

@@ -183,13 +183,19 @@ body.concept a {
   background: var(--ink);
 }
 
+/* The Healthcare tab is an <a> (links to Waystar). Beat the global
+   `body.concept a` color reset so the link tab matches the muted button tabs. */
+.tabs a.tab { color: var(--muted); }
+.tabs a.tab:hover { color: var(--ink); }
+
 /* ---------- Work carousel ---------- */
 .card-carousel {
   --visible: 4;                                   /* cards shown at once (desktop) */
   --cgap: clamp(0.75rem, 1.5vw, 1.25rem);
   margin-top: clamp(1.5rem, 3vw, 2.5rem);
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
+  overflow-y: hidden;                             /* horizontal scroller only — stops vertical wheel-scroll from being trapped here */
+  scroll-snap-type: x proximity;                  /* proximity (not mandatory) so it doesn't fight the page scroll */
   scrollbar-width: none;                          /* Firefox */
   -webkit-overflow-scrolling: touch;
 }
@@ -457,107 +463,3 @@ body.concept a {
   .hero-title { line-height: 1.18; }
 }
 
-/* ---------- Password modal (placeholder) ---------- */
-.pw-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem;
-}
-.pw-modal[hidden] { display: none; }
-
-.pw-backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(3px);
-}
-
-.pw-dialog {
-  position: relative;
-  width: min(28rem, 100%);
-  background: var(--paper);
-  padding: clamp(1.75rem, 4vw, 2.75rem);
-  border: 1px solid var(--ink);
-}
-
-.pw-close {
-  position: absolute;
-  top: 0.75rem;
-  right: 0.9rem;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  line-height: 1;
-  color: var(--muted);
-  cursor: pointer;
-  padding: 0.25rem;
-}
-.pw-close:hover { color: var(--ink); }
-
-.pw-eyebrow {
-  font-size: 0.6875rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--muted);
-  margin-bottom: 0.75rem;
-}
-
-.pw-title {
-  font-size: clamp(1.375rem, 3vw, 1.75rem);
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
-  margin-bottom: 0.75rem;
-}
-
-.pw-text {
-  font-size: 0.9375rem;
-  color: var(--muted);
-  line-height: 1.5;
-  margin-bottom: 1.5rem;
-}
-
-.pw-form {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.pw-input {
-  flex: 1;
-  font-family: inherit;
-  font-size: 1rem;
-  padding: 0.75rem 0.9rem;
-  border: 1px solid var(--line);
-  background: #fff;
-  color: var(--ink);
-}
-.pw-input:focus {
-  outline: none;
-  border-color: var(--ink);
-}
-
-.pw-submit {
-  font-family: inherit;
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: var(--paper);
-  background: var(--ink);
-  border: none;
-  padding: 0 1.25rem;
-  cursor: pointer;
-  transition: opacity 0.18s ease;
-}
-.pw-submit:hover { opacity: 0.9; }
-
-.pw-error {
-  margin-top: 0.85rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #d92d20;
-}
-.pw-error[hidden] { display: none; }

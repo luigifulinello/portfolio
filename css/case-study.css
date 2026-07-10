@@ -190,6 +190,21 @@
   color: var(--ink);
 }
 
+/* Waystar dual-role spine: stack a small date range beneath each role title
+   in the sticky label column (see waystar.html "Two Roles"). */
+.cs-page--waystar .cs-col-label {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+.cs-role-dates {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
 /* A label used on its own line (not in the two-column grid) */
 .cs-label--solo {
   display: flex;

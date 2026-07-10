@@ -13,13 +13,13 @@ Source of truth for the portfolio's visual system. Read this before adding or ed
 
 | File | Purpose |
 |---|---|
-| `index.html` | Home / landing. Hero, work grid with tabs, footer, password modal. |
-| `css/concept.css` | Design tokens (`:root`), base, header, hero, cards, tabs, footer, modal. Loaded by **every** page. |
+| `index.html` | Home / landing. Hero, work grid with tabs, footer. |
+| `css/concept.css` | Design tokens (`:root`), base, header, hero, cards, tabs, footer. Loaded by **every** page. |
 | `css/case-study.css` | The canonical case study template — all case study layout, modules & animations. Relies on tokens from `concept.css`. |
 | `js/case-study.js` | Case study behavior: scroll-reveal + scroll-driven hero expansion. Loaded by every case study. |
 | `<project>.html` | One case study per file (e.g. `pdp-redesign.html`, `checkout-redesign.html`, `navigation-redesign.html`, `mobile-commerce.html`). |
 | `case-study-template.html` | Copy-me skeleton for a new case study (every canonical section + optional modules commented). |
-| `js/concept.js` | Tab filtering + password modal. |
+| `js/concept.js` | Tab filtering; the Healthcare tab links to the Waystar case study. |
 
 Every page uses `class="concept"` so the shared tokens, header, and footer apply. Case studies add `case-study` plus a per-page modifier `cs-page--<slug>` for scoped, project-specific overrides.
 
@@ -62,7 +62,7 @@ Use the tokens. Image/media placeholders use `--placeholder` (light gray); `#333
 - **Work cards** — light-gray (`--placeholder`) `4/5` blocks, content overlaid bottom: ink title, muted description, no category tag. Linked cards are `<a class="card">`.
 - **Tabs** — pill buttons, left-aligned under the section label. Active pill = `--accent` background, white text. Tab labels are the category vocabulary: **E-commerce**, **Healthcare**.
 - **Footer** — full-bleed accent block, oversized statement, link column, hairline meta row.
-- **Password modal** — placeholder gate for protected (Healthcare) projects. Real auth is out of scope; the modal only ever shows the red "Incorrect password" feedback.
+- **Healthcare tab** — links directly to the Waystar case study (the sole healthcare project). No password gate.
 
 ## Case study system
 
