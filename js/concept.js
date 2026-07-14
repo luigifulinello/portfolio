@@ -1,66 +1,33 @@
-// Home page — work tabs. Healthcare routes straight to the Waystar case study.
+// Home page — accessible company tabs (Waystar / Solo Brands) that swap panels.
 (function () {
-  const tabs = document.querySelectorAll('.tab');
-  const cards = document.querySelectorAll('.card-item');
+  const tablist = document.querySelector('.tabs[role="tablist"]');
+  if (tablist) {
+    const tabs = [...tablist.querySelectorAll('[role="tab"]')];
 
-  tabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-      // Healthcare is a direct link to the Waystar case study (see index.html);
-      // let the anchor's href navigate, and skip the filter logic.
-      if (tab.dataset.filter === 'healthcare') return;
-
-      const filter = tab.dataset.filter;
+    function selectTab(tab, setFocus) {
       tabs.forEach((t) => {
         const active = t === tab;
         t.classList.toggle('is-active', active);
         t.setAttribute('aria-selected', active ? 'true' : 'false');
+        t.tabIndex = active ? 0 : -1;
+        const panel = document.getElementById(t.getAttribute('aria-controls'));
+        if (panel) panel.hidden = !active;
       });
-      cards.forEach((card) => {
-        const show = filter === 'all' || card.dataset.category === filter;
-        card.classList.toggle('is-hidden', !show);
+      if (setFocus) tab.focus();
+    }
+
+    tabs.forEach((tab, i) => {
+      tab.addEventListener('click', () => selectTab(tab));
+      tab.addEventListener('keydown', (e) => {
+        // Arrow keys move between tabs; Home/End jump to the ends.
+        let next = null;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = tabs[(i + 1) % tabs.length];
+        else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = tabs[(i - 1 + tabs.length) % tabs.length];
+        else if (e.key === 'Home') next = tabs[0];
+        else if (e.key === 'End') next = tabs[tabs.length - 1];
+        if (next) { e.preventDefault(); selectTab(next, true); }
       });
-      resetCarousel();
     });
-  });
-
-  // ---------- Work carousel: arrow controls (desktop) + swipe (touch) ----------
-  const carousel = document.querySelector('.card-carousel');
-  const track = carousel && carousel.querySelector('.card-track');
-  const prevBtn = document.querySelector('.carousel-btn[data-dir="prev"]');
-  const nextBtn = document.querySelector('.carousel-btn[data-dir="next"]');
-
-  function step() {
-    // One card width + gap, derived from the first visible card.
-    const item = track && track.querySelector('.card-item:not(.is-hidden)');
-    if (!item) return carousel ? carousel.clientWidth : 0;
-    const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-    return item.getBoundingClientRect().width + gap;
-  }
-
-  function updateButtons() {
-    if (!carousel || !prevBtn || !nextBtn) return;
-    const max = carousel.scrollWidth - carousel.clientWidth - 1;
-    prevBtn.disabled = carousel.scrollLeft <= 0;
-    nextBtn.disabled = carousel.scrollLeft >= max;
-  }
-
-  function resetCarousel() {
-    if (!carousel) return;
-    carousel.scrollTo({ left: 0, behavior: 'smooth' });
-    // scrollTo is async; sync the buttons on the next frame too.
-    requestAnimationFrame(updateButtons);
-  }
-
-  if (carousel && prevBtn && nextBtn) {
-    prevBtn.addEventListener('click', () =>
-      carousel.scrollBy({ left: -step(), behavior: 'smooth' })
-    );
-    nextBtn.addEventListener('click', () =>
-      carousel.scrollBy({ left: step(), behavior: 'smooth' })
-    );
-    carousel.addEventListener('scroll', updateButtons, { passive: true });
-    window.addEventListener('resize', updateButtons);
-    updateButtons();
   }
 
   // ---------- Section intro reveal ----------
@@ -97,7 +64,7 @@
       });
     });
   }
-  const revealSections = document.querySelectorAll('.work, .about, .site-footer');
+  const revealSections = document.querySelectorAll('.work, .about, .writing, .site-footer');
   if ('IntersectionObserver' in window && revealSections.length) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {

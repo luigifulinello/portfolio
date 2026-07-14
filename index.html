@@ -16,9 +16,9 @@
         <a href="#top" class="wordmark">Luigi&nbsp;Fulinello</a>
         <nav class="site-nav">
           <a href="#work">Work</a>
+          <a href="#writing">Writing</a>
           <a href="#about">About</a>
           <a href="https://drive.google.com/file/d/1fpEYzA8f9S-P7hnECne8Si81S3xj1UBX/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Resume</a>
-          <a href="https://www.linkedin.com/in/luigifulinello/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </nav>
       </div>
     </header>
@@ -28,47 +28,62 @@
       <!-- Hero -->
       <section class="hero">
         <h1 class="hero-title">
-          Product Manager&nbsp;&amp;&nbsp;Product Designer<br class="hero-br">
-          building e-commerce and healthcare<br class="hero-br">
-          software experiences.
+          Product Manager building<br class="hero-br">
+          AI for healthcare payments.
         </h1>
       </section>
 
-      <!-- Work: tabs + cards -->
+      <!-- Work: company tabs with summary panels -->
       <section class="work" id="work">
         <div class="work-head">
           <div class="work-head-main">
             <h2 class="section-label">Selected Work</h2>
-            <div class="tabs" role="tablist" aria-label="Filter work by industry">
-              <button class="tab is-active" data-filter="ecommerce" role="tab" aria-selected="true">E-commerce</button>
-              <a class="tab" href="waystar.html" data-filter="healthcare">Healthcare</a>
+            <div class="tabs" role="tablist" aria-label="Work by company">
+              <button class="tab is-active" id="tab-waystar" role="tab" aria-selected="true" aria-controls="panel-waystar">Waystar</button>
+              <button class="tab" id="tab-solo" role="tab" aria-selected="false" aria-controls="panel-solo" tabindex="-1">Solo Brands</button>
             </div>
           </div>
         </div>
 
-        <div class="card-carousel">
-          <div class="card-track">
-            <!-- E-commerce -->
-            <a class="card-item" href="pdp-redesign.html" data-category="ecommerce">
-              <div class="card"><img src="images/work_card_solo_stove_pdp.jpg" alt="Solo Stove Product Detail Page"></div>
-              <h3 class="card-title">Solo Stove Product Detail Page</h3>
-            </a>
-            <a class="card-item" href="cart-redesign.html" data-category="ecommerce">
-              <div class="card"><img src="images/work_card_solo_stove_cart.jpg" alt="Solo Stove Cart"></div>
-              <h3 class="card-title">Solo Stove Cart</h3>
-            </a>
-
-            <a class="card-item" href="snoop-dogg-goes-smokeless.html" data-category="ecommerce">
-              <div class="card"><img src="images/work_card_smokeless.jpg" alt="Snoop Dogg Goes Smokeless"></div>
-              <h3 class="card-title">Snoop Dogg Goes Smokeless</h3>
-            </a>
-
-            <a class="card-item" href="product-listing-page.html" data-category="ecommerce">
-              <div class="card"><img src="images/work_card_solo_stove_clp.jpg" alt="Solo Stove Category Landing Page"></div>
-              <h3 class="card-title">Solo Stove Product Listing Page</h3>
-            </a>
+        <div class="work-panels">
+          <div class="work-card" id="panel-waystar" role="tabpanel" aria-labelledby="tab-waystar" tabindex="0">
+            <h3 class="work-card-title">Healthcare revenue cycle management, from claims management to applied AI.</h3>
+            <a class="work-link" href="waystar.html">Learn more →</a>
+            <a class="work-card-media" href="waystar.html"><img src="images/waystar/hero.jpg" alt="A clinician giving a patient their full attention" style="object-position: center 62%;"></a>
+          </div>
+          <div class="work-card" id="panel-solo" role="tabpanel" aria-labelledby="tab-solo" tabindex="0" hidden>
+            <h3 class="work-card-title">Design and experimentation across a multi-brand DTC portfolio, end to end.</h3>
+            <a class="work-link" href="solo-brands.html">Learn more →</a>
+            <a class="work-card-media" href="solo-brands.html"><img src="images/pdp-redesign/hero.jpg" alt="Solo Brands e-commerce design and experimentation work"></a>
           </div>
         </div>
+      </section>
+
+      <!-- Writing (placeholder posts — real content + links pending) -->
+      <section class="writing" id="writing">
+        <div class="writing-head">
+          <h2 class="section-label">Writing</h2>
+        </div>
+        <ul class="writing-list">
+          <li class="writing-post">
+            <a class="writing-post-link" href="#">
+              <h3 class="writing-post-title">Trust before autonomy, and how AI earns it</h3>
+              <p class="writing-post-excerpt">No one hands their revenue to a black box. Why accuracy thresholds and explainable decisions are the real adoption curve for AI in healthcare payments, and how to design the handoff from recommendation to autonomy.</p>
+            </a>
+          </li>
+          <li class="writing-post">
+            <a class="writing-post-link" href="#">
+              <h3 class="writing-post-title">The PM who designs, from roadmap to screen</h3>
+              <p class="writing-post-excerpt">The roadmap and the screen usually belong to different people, and something is always lost in the handoff. What changes when one person owns both, from sharper bets to faster ships, and where the model hits its limits.</p>
+            </a>
+          </li>
+          <li class="writing-post">
+            <a class="writing-post-link" href="#">
+              <h3 class="writing-post-title">Every strong opinion is a hypothesis</h3>
+              <p class="writing-post-excerpt">Owning both design and the A/B program taught me to treat conviction as a bet. Lessons from a multi-brand DTC portfolio where every redesign shipped as a test and conversion had the last word.</p>
+            </a>
+          </li>
+        </ul>
       </section>
 
       <!-- About -->
@@ -83,7 +98,6 @@
           <div class="about-body">
             <div class="about-block">
               <h3 class="about-subhead">
-                <svg class="about-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 13V2l8 4-8 4"/><path d="M20.561 10.222a9 9 0 1 1-12.55-5.29"/><path d="M8.002 9.997a5 5 0 1 0 8.9 2.02"/></svg>
                 Big industries, real stakes.
               </h3>
               <p>
@@ -91,7 +105,6 @@
             </div>
             <div class="about-block">
               <h3 class="about-subhead">
-                <svg class="about-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15.194 13.707 3.814 1.86-1.86 3.814"/><path d="M16.47214 7.52786 A 5 10 0 1 0 13 21.79796"/><path d="M21.79796 11 A 10 5 0 1 0 19 15.57071"/></svg>
                 A PM who designs
               </h3>
               <p>
@@ -100,7 +113,6 @@
             </div>
             <div class="about-block">
               <h3 class="about-subhead">
-                <svg class="about-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg>
                 Strong opinions, tested.
               </h3>
               <p>
@@ -109,7 +121,6 @@
             </div>
             <div class="about-block">
               <h3 class="about-subhead">
-                <svg class="about-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 10.42 4.8-5.07"/><path d="M19 18h3"/><path d="M9.5 22 21.414 9.415A2 2 0 0 0 21.2 6.4l-5.61-4.208A1 1 0 0 0 14 3v2a2 2 0 0 1-1.394 1.906L8.677 8.053A1 1 0 0 0 8 9c-.155 6.393-2.082 9-4 9a2 2 0 0 0 0 4h14"/></svg>
                 Outside of work.
               </h3>
               <p>
@@ -128,6 +139,7 @@
         <p class="footer-lead">Let's build<br>together.</p>
         <div class="footer-links">
           <a href="#work">Work</a>
+          <a href="#writing">Writing</a>
           <a href="#about">About</a>
           <a href="https://drive.google.com/file/d/1fpEYzA8f9S-P7hnECne8Si81S3xj1UBX/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Resume</a>
           <a href="https://www.linkedin.com/in/luigifulinello/" target="_blank" rel="noopener noreferrer">LinkedIn</a>

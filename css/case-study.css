@@ -153,6 +153,14 @@
 .cs-section {
   padding: clamp(3rem, 9vh, 7rem) 0 0;
 }
+/* Media, grids, and metrics that follow a section's text inside the same
+   section keep the section rhythm, matching the room they had when each
+   block was its own section. */
+.cs-section > .cs-wrap + .cs-wrap,
+.cs-section > .cs-wrap + .cs-figure,
+.cs-section > .cs-wrap + .cs-layout-block {
+  margin-top: clamp(3rem, 8vh, 6rem);
+}
 
 /* Two-column: sticky label + body */
 .cs-cols {

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en" class="concept">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hero concepts — workshop</title>
+    <link rel="stylesheet" href="css/concept.css">
+    <style>
+      /* Workshop page — throwaway exploration, not linked from the site.
+         Each option renders inside a fixed-height frame that simulates the
+         fold, so the judgment is "what's visible before scrolling". */
+
+      /* Neutralize the scroll-reveal animation (no JS on this page) */
+      .work-head-main, .work-panels { opacity: 1 !important; transform: none !important; }
+      .work-head::after { transform: none !important; }
+
+      .ws-intro {
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding: clamp(2rem, 5vw, 3.5rem) var(--edge) clamp(1rem, 2vw, 1.5rem);
+      }
+      .ws-intro h1 {
+        font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin-bottom: 0.5rem;
+      }
+      .ws-intro p { color: var(--muted); max-width: 60ch; line-height: 1.5; }
+
+      .option {
+        max-width: var(--maxw);
+        margin: 0 auto clamp(3rem, 6vw, 5rem);
+        padding: 0 var(--edge);
+      }
+      .option-tag {
+        display: flex;
+        align-items: baseline;
+        gap: 0.75rem;
+        margin-bottom: 0.9rem;
+      }
+      .option-letter {
+        flex-shrink: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.75rem;
+        height: 1.75rem;
+        border-radius: 999px;
+        background: var(--ink);
+        color: var(--paper);
+        font-weight: 700;
+        font-size: 0.875rem;
+        align-self: center;
+      }
+      .option-name { font-weight: 700; letter-spacing: -0.01em; }
+      .option-why { color: var(--muted); font-size: 0.9375rem; }
+
+      .option-frame {
+        height: min(720px, 88vh);
+        overflow: hidden;
+        position: relative;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: var(--paper);
+      }
+      /* Bottom fade = "content continues past the fold" */
+      .option-frame::after {
+        content: "";
+        position: absolute;
+        left: 0; right: 0; bottom: 0;
+        height: 56px;
+        background: linear-gradient(to bottom, rgba(255,255,255,0), #ffffff);
+        pointer-events: none;
+      }
+      .option-frame .site-header { position: static; }
+
+      /* Shared tightening: every option trims the hero's vertical padding */
+      .option-frame .hero {
+        padding-top: clamp(2.5rem, 7vh, 4.25rem);
+        padding-bottom: clamp(2.25rem, 6vh, 3.75rem);
+      }
+
+      /* B — aphorism alone, width capped so it breaks into two balanced lines */
+      .hero--b .hero-title { max-width: 24ch; }
+
+      /* C — kicker above a short claim */
+      .hero-kicker {
+        font-size: 0.8125rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--muted);
+        margin-bottom: 1.5rem;
+      }
+
+      /* D — two-tone: statement in ink, context clause in gray, one block */
+      .hero--d .hero-title { max-width: 28ch; }
+      .hero--d .hero-title span { color: #8a8a8a; }
+    </style>
+  </head>
+  <body class="concept">
+
+    <div class="ws-intro">
+      <h1>Hero workshop</h1>
+      <p>Four directions, each in a simulated fold (~720px). All drop the sub-copy paragraph and tighten vertical padding so the work section peeks back above the fold. Copy is swappable across layouts — judge the structure first.</p>
+    </div>
+
+    <!-- ============ OPTION A ============ -->
+    <section class="option" id="option-a">
+      <div class="option-tag">
+        <span class="option-letter">A</span>
+        <span class="option-name">Role-forward</span>
+        <span class="option-why">— successor to the old hero: who you are + what you build, two tight lines, nothing else.</span>
+      </div>
+      <div class="option-frame">
+        <header class="site-header">
+          <div class="header-inner">
+            <span class="wordmark">Luigi&nbsp;Fulinello</span>
+            <nav class="site-nav"><a href="#">Work</a><a href="#">Writing</a><a href="#">About</a><a href="#">Resume</a></nav>
+          </div>
+        </header>
+        <section class="hero hero--a">
+          <h1 class="hero-title">
+            Product Manager &amp;&nbsp;Product Designer<br class="hero-br">
+            building AI for healthcare payments.
+          </h1>
+        </section>
+        <section class="work">
+          <div class="work-head">
+            <div class="work-head-main">
+              <h2 class="section-label">Selected Work</h2>
+              <div class="tabs"><button class="tab is-active">Waystar</button><button class="tab">Solo Brands</button></div>
+            </div>
+          </div>
+          <div class="work-panels">
+            <div class="work-card">
+              <h3 class="work-card-title">Healthcare revenue cycle management, from claims management to applied AI.</h3>
+              <span class="work-link">Learn more →</span>
+              <span class="work-card-media"><img src="images/waystar/hero.jpg" alt="" style="object-position: center 62%;"></span>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- ============ OPTION B ============ -->
+    <section class="option" id="option-b">
+      <div class="option-tag">
+        <span class="option-letter">B</span>
+        <span class="option-name">The opinion, standing alone</span>
+        <span class="option-why">— keep the current headline but cut the paragraph; the width cap balances it into two lines.</span>
+      </div>
+      <div class="option-frame">
+        <header class="site-header">
+          <div class="header-inner">
+            <span class="wordmark">Luigi&nbsp;Fulinello</span>
+            <nav class="site-nav"><a href="#">Work</a><a href="#">Writing</a><a href="#">About</a><a href="#">Resume</a></nav>
+          </div>
+        </header>
+        <section class="hero hero--b">
+          <h1 class="hero-title">I build AI products for workflows where mistakes cost money.</h1>
+        </section>
+        <section class="work">
+          <div class="work-head">
+            <div class="work-head-main">
+              <h2 class="section-label">Selected Work</h2>
+              <div class="tabs"><button class="tab is-active">Waystar</button><button class="tab">Solo Brands</button></div>
+            </div>
+          </div>
+          <div class="work-panels">
+            <div class="work-card">
+              <h3 class="work-card-title">Healthcare revenue cycle management, from claims management to applied AI.</h3>
+              <span class="work-link">Learn more →</span>
+              <span class="work-card-media"><img src="images/waystar/hero.jpg" alt="" style="object-position: center 62%;"></span>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- ============ OPTION C ============ -->
+    <section class="option" id="option-c">
+      <div class="option-tag">
+        <span class="option-letter">C</span>
+        <span class="option-name">Kicker + claim</span>
+        <span class="option-why">— roles move into a small eyebrow line, freeing the headline to be a short, sharp claim.</span>
+      </div>
+      <div class="option-frame">
+        <header class="site-header">
+          <div class="header-inner">
+            <span class="wordmark">Luigi&nbsp;Fulinello</span>
+            <nav class="site-nav"><a href="#">Work</a><a href="#">Writing</a><a href="#">About</a><a href="#">Resume</a></nav>
+          </div>
+        </header>
+        <section class="hero hero--c">
+          <p class="hero-kicker">Product Manager &amp; Designer · Healthcare AI</p>
+          <h1 class="hero-title">From roadmap to screen,<br class="hero-br"> no translation loss.</h1>
+        </section>
+        <section class="work">
+          <div class="work-head">
+            <div class="work-head-main">
+              <h2 class="section-label">Selected Work</h2>
+              <div class="tabs"><button class="tab is-active">Waystar</button><button class="tab">Solo Brands</button></div>
+            </div>
+          </div>
+          <div class="work-panels">
+            <div class="work-card">
+              <h3 class="work-card-title">Healthcare revenue cycle management, from claims management to applied AI.</h3>
+              <span class="work-link">Learn more →</span>
+              <span class="work-card-media"><img src="images/waystar/hero.jpg" alt="" style="object-position: center 62%;"></span>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- ============ OPTION D ============ -->
+    <section class="option" id="option-d">
+      <div class="option-tag">
+        <span class="option-letter">D</span>
+        <span class="option-name">Two-tone</span>
+        <span class="option-why">— statement in ink, context clause in gray; the context survives without a separate paragraph.</span>
+      </div>
+      <div class="option-frame">
+        <header class="site-header">
+          <div class="header-inner">
+            <span class="wordmark">Luigi&nbsp;Fulinello</span>
+            <nav class="site-nav"><a href="#">Work</a><a href="#">Writing</a><a href="#">About</a><a href="#">Resume</a></nav>
+          </div>
+        </header>
+        <section class="hero hero--d">
+          <h1 class="hero-title">I design the products I manage. <span>Now shipping applied AI into healthcare payments.</span></h1>
+        </section>
+        <section class="work">
+          <div class="work-head">
+            <div class="work-head-main">
+              <h2 class="section-label">Selected Work</h2>
+              <div class="tabs"><button class="tab is-active">Waystar</button><button class="tab">Solo Brands</button></div>
+            </div>
+          </div>
+          <div class="work-panels">
+            <div class="work-card">
+              <h3 class="work-card-title">Healthcare revenue cycle management, from claims management to applied AI.</h3>
+              <span class="work-link">Learn more →</span>
+              <span class="work-card-media"><img src="images/waystar/hero.jpg" alt="" style="object-position: center 62%;"></span>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+  </body>
+</html>
