@@ -1,0 +1,1437 @@
+<title>Four Ways to Paint</title>
+
+<style>
+  :root {
+    --ground:      #E9EAE6;
+    --surface:     #F4F5F2;
+    --surface-2:   #DEE1DB;
+    --ink:         #14191B;
+    --ink-2:       #4B5457;
+    --ink-3:       #7B8483;
+    --rule:        #C8CCC4;
+    --rule-soft:   #D8DBD4;
+    --accent:      #1F6E5E;
+    --accent-soft: #D6E5E0;
+
+    --p-code:   #1F6E5E;
+    --p-brush:  #8F6018;
+    --p-hybrid: #9B3A45;
+    --p-node:   #33509B;
+
+    --canvas-ground: #DFE2DC;
+
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, "Cascadia Mono", Consolas, monospace;
+
+    --fs-xs:   0.6875rem;
+    --fs-sm:   0.8125rem;
+    --fs-base: 1.0625rem;
+    --fs-lg:   1.1875rem;
+    --fs-xl:   1.5rem;
+    --fs-2xl:  2.125rem;
+    --fs-3xl:  3rem;
+
+    --page: 68rem;
+    --prose: 34rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:      #101516;
+      --surface:     #171D1F;
+      --surface-2:   #202729;
+      --ink:         #E7EAE6;
+      --ink-2:       #A3ACAB;
+      --ink-3:       #6F7A79;
+      --rule:        #2B3335;
+      --rule-soft:   #222A2C;
+      --accent:      #55B9A1;
+      --accent-soft: #1B302D;
+
+      --p-code:   #55B9A1;
+      --p-brush:  #D19B45;
+      --p-hybrid: #D4636E;
+      --p-node:   #7791E0;
+
+      --canvas-ground: #0C1112;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground:      #101516;
+    --surface:     #171D1F;
+    --surface-2:   #202729;
+    --ink:         #E7EAE6;
+    --ink-2:       #A3ACAB;
+    --ink-3:       #6F7A79;
+    --rule:        #2B3335;
+    --rule-soft:   #222A2C;
+    --accent:      #55B9A1;
+    --accent-soft: #1B302D;
+
+    --p-code:   #55B9A1;
+    --p-brush:  #D19B45;
+    --p-hybrid: #D4636E;
+    --p-node:   #7791E0;
+
+    --canvas-ground: #0C1112;
+  }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: var(--fs-base);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: var(--page);
+    margin: 0 auto;
+    padding: clamp(2rem, 6vw, 5rem) clamp(1.1rem, 4vw, 2.5rem) 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(3rem, 7vw, 5.5rem);
+  }
+
+  /* ---- masthead ---- */
+
+  .masthead { display: flex; flex-direction: column; gap: 1.25rem; }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: var(--fs-xs);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.25rem, 6.5vw, var(--fs-3xl));
+    font-weight: 400;
+    line-height: 1.04;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+    max-width: 16ch;
+  }
+
+  .standfirst {
+    font-size: var(--fs-lg);
+    line-height: 1.55;
+    color: var(--ink-2);
+    max-width: var(--prose);
+  }
+
+  .constraint {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--rule);
+    font-family: var(--mono);
+    font-size: var(--fs-sm);
+    color: var(--ink-3);
+  }
+  .constraint b { color: var(--ink-2); font-weight: 500; }
+
+  /* ---- instrument card ---- */
+
+  .mode {
+    --pig: var(--accent);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    scroll-margin-top: 2rem;
+  }
+
+  .mode-head {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.35rem 1rem;
+    align-items: baseline;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .chip {
+    width: 0.85rem;
+    height: 0.85rem;
+    border-radius: 50%;
+    background: var(--pig);
+    align-self: center;
+    grid-row: 1;
+  }
+
+  .mode-head h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.4rem, 3.5vw, var(--fs-xl));
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    grid-row: 1;
+  }
+
+  .mode-head p {
+    grid-column: 2;
+    color: var(--ink-2);
+    max-width: 46ch;
+  }
+
+  .stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1.55fr) minmax(15rem, 1fr);
+    gap: 1.25rem;
+    align-items: start;
+  }
+  @media (max-width: 46rem) {
+    .stage { grid-template-columns: minmax(0, 1fr); }
+  }
+
+  .canvas-shell {
+    position: relative;
+    background: var(--canvas-ground);
+    border: 1px solid var(--rule);
+    overflow: hidden;
+  }
+  canvas.art {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    touch-action: none;
+  }
+  canvas.paintable { cursor: crosshair; }
+
+  .hint {
+    position: absolute;
+    left: 0.75rem;
+    bottom: 0.7rem;
+    font-family: var(--mono);
+    font-size: var(--fs-xs);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.55);
+    padding: 0.28rem 0.5rem;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+  .hint[hidden] { display: block; opacity: 0; }
+
+  /* ---- controls ---- */
+
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    padding: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .panel-title {
+    font-family: var(--mono);
+    font-size: var(--fs-xs);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+
+  .ctl { display: flex; flex-direction: column; gap: 0.3rem; }
+
+  .ctl-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    font-family: var(--mono);
+    font-size: var(--fs-sm);
+    color: var(--ink-2);
+  }
+  .ctl-row output {
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+  }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 1.1rem;
+    background: transparent;
+    cursor: pointer;
+  }
+  input[type="range"]::-webkit-slider-runnable-track {
+    height: 2px;
+    background: var(--rule);
+  }
+  input[type="range"]::-moz-range-track {
+    height: 2px;
+    background: var(--rule);
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 0.85rem;
+    height: 0.85rem;
+    border-radius: 50%;
+    background: var(--pig);
+    margin-top: -0.39rem;
+    border: none;
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 0.85rem;
+    height: 0.85rem;
+    border-radius: 50%;
+    background: var(--pig);
+    border: none;
+  }
+
+  select {
+    font-family: var(--mono);
+    font-size: var(--fs-sm);
+    color: var(--ink);
+    background: var(--surface-2);
+    border: 1px solid var(--rule);
+    padding: 0.35rem 0.45rem;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  button {
+    font-family: var(--mono);
+    font-size: var(--fs-sm);
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    background: var(--surface-2);
+    border: 1px solid var(--rule);
+    padding: 0.45rem 0.7rem;
+    cursor: pointer;
+  }
+  button:hover { border-color: var(--pig); color: var(--pig); }
+  button[aria-pressed="true"] {
+    background: var(--pig);
+    border-color: var(--pig);
+    color: var(--surface);
+  }
+
+  .btn-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+  .swatches { display: flex; gap: 0.4rem; }
+  .swatch {
+    width: 1.6rem;
+    height: 1.6rem;
+    border: 1px solid var(--rule);
+    padding: 0;
+    cursor: pointer;
+  }
+  .swatch[aria-pressed="true"] { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+  :where(a, button, select, textarea, input, [tabindex]):focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  /* ---- code editor ---- */
+
+  textarea.code {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    line-height: 1.55;
+    tab-size: 2;
+    color: var(--ink);
+    background: var(--surface-2);
+    border: 1px solid var(--rule);
+    padding: 0.7rem;
+    width: 100%;
+    min-height: 15rem;
+    resize: vertical;
+    white-space: pre;
+    overflow-wrap: normal;
+    overflow-x: auto;
+  }
+
+  .err {
+    font-family: var(--mono);
+    font-size: var(--fs-xs);
+    line-height: 1.5;
+    color: var(--p-hybrid);
+    min-height: 1.2em;
+  }
+
+  /* ---- node graph ---- */
+
+  .graph-scroll {
+    overflow-x: auto;
+    border: 1px solid var(--rule);
+    background: var(--surface);
+  }
+  .graph {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.25rem;
+    align-items: center;
+    padding: 1.1rem;
+    min-width: 44rem;
+  }
+  .graph svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: visible;
+  }
+  .graph svg path {
+    fill: none;
+    stroke: var(--rule);
+    stroke-width: 1.5;
+  }
+
+  .node {
+    position: relative;
+    z-index: 1;
+    background: var(--surface-2);
+    border: 1px solid var(--rule);
+    border-top: 2px solid var(--nc, var(--pig));
+    padding: 0.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+  .node-name {
+    font-family: var(--mono);
+    font-size: var(--fs-xs);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+  .sources { display: flex; flex-direction: column; gap: 0.9rem; }
+
+  /* ---- verdict + close ---- */
+
+  .verdict {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+    gap: 0.9rem 1.75rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .verdict div { display: flex; flex-direction: column; gap: 0.15rem; }
+  .verdict dd { margin: 0; }
+  .verdict dt {
+    font-family: var(--mono);
+    font-size: var(--fs-xs);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .verdict dd { font-size: var(--fs-sm); line-height: 1.5; color: var(--ink-2); }
+
+  .close {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    max-width: var(--prose);
+  }
+  .close h2 {
+    font-family: var(--serif);
+    font-size: var(--fs-xl);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  .close p { color: var(--ink-2); }
+  .close strong { color: var(--ink); font-weight: 600; }
+
+  .stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    padding: 1.1rem;
+    background: var(--surface);
+    border-left: 2px solid var(--accent);
+    font-family: var(--mono);
+    font-size: var(--fs-sm);
+    color: var(--ink-2);
+  }
+  .stack b { color: var(--ink); font-weight: 500; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+
+<script type="text/plain" id="default-sketch">// draws every frame. t = seconds, w/h = canvas size
+const bands = 8;
+for (let i = 0; i < bands; i++) {
+  const y = (i / bands) * h + 30;
+  const drift = Math.sin(t * 0.35 + i * 0.8) * 26;
+  ctx.fillStyle = `hsl(${170 - i * 7} ${44 - i * 3}% ${16 + i * 6}%)`;
+  ctx.beginPath();
+  ctx.moveTo(0, y + drift);
+  for (let x = 0; x <= w; x += 10) {
+    ctx.lineTo(x, y + drift + Math.sin(x * 0.012 + t * 0.6 + i) * 16);
+  }
+  ctx.lineTo(w, h);
+  ctx.lineTo(0, h);
+  ctx.fill();
+}
+</script>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="eyebrow">Tool study &middot; 001</p>
+    <h1>Four Ways to Paint</h1>
+    <p class="standfirst">
+      Before any of the export plumbing gets built, the tool needs to decide what
+      it feels like to make something in it. Each of the four below is live &mdash;
+      drag on the canvases, move the sliders, rewrite the code. The one that feels
+      like painting to you is the one to build.
+    </p>
+    <p class="constraint">
+      <span>Shared by all four: <b>3840&times;2160 stills</b></span>
+      <span><b>Seamless MP4 loops</b></span>
+      <span>Frame &middot; LG Gallery &middot; ambient &middot; USB</span>
+    </p>
+  </header>
+
+  <!-- ============ 1. CODE ============ -->
+  <section class="mode" style="--pig: var(--p-code)">
+    <div class="mode-head">
+      <span class="chip"></span>
+      <h2>Write the painting</h2>
+      <p>
+        A sketch is a function that runs every frame. Change a number, the canvas
+        changes as you type. Total control, and nothing exists until you type it.
+      </p>
+    </div>
+
+    <div class="stage">
+      <div class="canvas-shell">
+        <canvas class="art" id="cv-code"></canvas>
+      </div>
+      <div class="panel">
+        <p class="panel-title">Sketch</p>
+        <textarea class="code" id="code-editor" spellcheck="false" aria-label="Sketch source code"></textarea>
+        <p class="err" id="code-err" role="status"></p>
+        <div class="btn-row">
+          <button type="button" id="code-reset">Reset sketch</button>
+        </div>
+      </div>
+    </div>
+
+    <dl class="verdict">
+      <div><dt>Strength</dt><dd>Anything is reachable. No ceiling.</dd></div>
+      <div><dt>Cost</dt><dd>A blank editor is a blank page. You start from nothing every time.</dd></div>
+      <div><dt>Non-coder</dt><dd>Locked out entirely.</dd></div>
+      <div><dt>Build effort</dt><dd>Low &mdash; an editor, a sandbox, a render loop.</dd></div>
+    </dl>
+  </section>
+
+  <!-- ============ 2. BRUSH ============ -->
+  <section class="mode" style="--pig: var(--p-brush)">
+    <div class="mode-head">
+      <span class="chip"></span>
+      <h2>Push the pigment</h2>
+      <p>
+        Direct manipulation. The brush is a cluster of bristles that scatter and
+        soften as you drag. What you make is exactly what your hand did.
+      </p>
+    </div>
+
+    <div class="stage">
+      <div class="canvas-shell">
+        <canvas class="art paintable" id="cv-brush"></canvas>
+        <p class="hint" id="hint-brush">Drag to paint</p>
+      </div>
+      <div class="panel">
+        <p class="panel-title">Brush</p>
+        <div class="ctl">
+          <div class="ctl-row"><label for="br-size">Size</label><output id="br-size-o">54</output></div>
+          <input type="range" id="br-size" min="6" max="120" value="54">
+        </div>
+        <div class="ctl">
+          <div class="ctl-row"><label for="br-scatter">Scatter</label><output id="br-scatter-o">0.55</output></div>
+          <input type="range" id="br-scatter" min="0" max="100" value="55">
+        </div>
+        <div class="ctl">
+          <div class="ctl-row"><label for="br-flow">Flow</label><output id="br-flow-o">0.30</output></div>
+          <input type="range" id="br-flow" min="2" max="100" value="30">
+        </div>
+        <div class="ctl">
+          <div class="ctl-row"><span>Pigment</span></div>
+          <div class="swatches" id="br-swatches" role="group" aria-label="Pigment"></div>
+        </div>
+        <div class="btn-row">
+          <button type="button" id="br-clear">Clear canvas</button>
+        </div>
+      </div>
+    </div>
+
+    <dl class="verdict">
+      <div><dt>Strength</dt><dd>Immediate. Every mark is yours.</dd></div>
+      <div><dt>Cost</dt><dd>You have to be able to paint. The tool adds nothing you didn't draw.</dd></div>
+      <div><dt>Non-coder</dt><dd>Fully open &mdash; but it's a skill, not a shortcut.</dd></div>
+      <div><dt>Build effort</dt><dd>High &mdash; brush engines, layers, blend modes, undo.</dd></div>
+    </dl>
+  </section>
+
+  <!-- ============ 3. HYBRID ============ -->
+  <section class="mode" style="--pig: var(--p-hybrid)">
+    <div class="mode-head">
+      <span class="chip"></span>
+      <h2>Paint where it grows</h2>
+      <p>
+        You don't draw the marks &mdash; you draw the conditions. Thousands of
+        particles ride a flow field across the canvas, and where you paint, they
+        slow down, thicken, and change pigment. You steer; the system renders.
+      </p>
+    </div>
+
+    <div class="stage">
+      <div class="canvas-shell">
+        <canvas class="art paintable" id="cv-hybrid"></canvas>
+        <p class="hint" id="hint-hybrid">Drag to seed growth</p>
+      </div>
+      <div class="panel">
+        <p class="panel-title">Field</p>
+        <div class="ctl">
+          <div class="ctl-row"><label for="hy-brush">Seed size</label><output id="hy-brush-o">90</output></div>
+          <input type="range" id="hy-brush" min="20" max="200" value="90">
+        </div>
+        <div class="ctl">
+          <div class="ctl-row"><label for="hy-turb">Turbulence</label><output id="hy-turb-o">1.00</output></div>
+          <input type="range" id="hy-turb" min="0" max="250" value="100">
+        </div>
+        <div class="ctl">
+          <div class="ctl-row"><label for="hy-flow">Current</label><output id="hy-flow-o">1.00</output></div>
+          <input type="range" id="hy-flow" min="10" max="260" value="100">
+        </div>
+        <div class="ctl">
+          <div class="ctl-row"><label for="hy-density">Density</label><output id="hy-density-o">1300</output></div>
+          <input type="range" id="hy-density" min="150" max="2200" value="1300">
+        </div>
+        <div class="btn-row">
+          <button type="button" id="hy-erase" aria-pressed="false">Erase</button>
+          <button type="button" id="hy-clear">Clear</button>
+        </div>
+      </div>
+    </div>
+
+    <dl class="verdict">
+      <div><dt>Strength</dt><dd>Gives back more than you put in. Gesture becomes composition.</dd></div>
+      <div><dt>Cost</dt><dd>Indirect. You aim the result rather than specify it.</dd></div>
+      <div><dt>Non-coder</dt><dd>Fully open, and rewarding within a minute.</dd></div>
+      <div><dt>Build effort</dt><dd>High &mdash; every system needs its own hand-tuned behaviour.</dd></div>
+    </dl>
+  </section>
+
+  <!-- ============ 4. NODE GRAPH ============ -->
+  <section class="mode" style="--pig: var(--p-node)">
+    <div class="mode-head">
+      <span class="chip"></span>
+      <h2>Patch the painting</h2>
+      <p>
+        Two fields, blended, coloured, then grained. Every box is a step in the
+        recipe with its own dials, and the wires show what feeds what. Nothing is
+        typed and nothing is hidden.
+      </p>
+    </div>
+
+    <div class="stage" style="grid-template-columns: minmax(0, 1fr)">
+      <div class="canvas-shell">
+        <canvas class="art" id="cv-node"></canvas>
+      </div>
+    </div>
+
+    <div class="graph-scroll">
+      <div class="graph" id="graph">
+        <svg id="wires" aria-hidden="true"></svg>
+
+        <div class="sources">
+          <div class="node" id="n-a" style="--nc: var(--p-node)">
+            <p class="node-name">Field A</p>
+            <select id="na-type" aria-label="Field A type">
+              <option value="waves">waves</option>
+              <option value="rings">rings</option>
+              <option value="drift">drift</option>
+            </select>
+            <div class="ctl">
+              <div class="ctl-row"><label for="na-scale">scale</label><output id="na-scale-o">0.40</output></div>
+              <input type="range" id="na-scale" min="5" max="150" value="40">
+            </div>
+            <div class="ctl">
+              <div class="ctl-row"><label for="na-speed">speed</label><output id="na-speed-o">0.50</output></div>
+              <input type="range" id="na-speed" min="0" max="150" value="50">
+            </div>
+          </div>
+
+          <div class="node" id="n-b" style="--nc: var(--p-node)">
+            <p class="node-name">Field B</p>
+            <select id="nb-type" aria-label="Field B type">
+              <option value="waves">waves</option>
+              <option value="rings" selected>rings</option>
+              <option value="drift">drift</option>
+            </select>
+            <div class="ctl">
+              <div class="ctl-row"><label for="nb-scale">scale</label><output id="nb-scale-o">0.22</output></div>
+              <input type="range" id="nb-scale" min="5" max="150" value="22">
+            </div>
+            <div class="ctl">
+              <div class="ctl-row"><label for="nb-speed">speed</label><output id="nb-speed-o">0.30</output></div>
+              <input type="range" id="nb-speed" min="0" max="150" value="30">
+            </div>
+          </div>
+        </div>
+
+        <div class="node" id="n-c" style="--nc: var(--p-hybrid)">
+          <p class="node-name">Blend</p>
+          <select id="nc-mode" aria-label="Blend mode">
+            <option value="mix">mix</option>
+            <option value="multiply">multiply</option>
+            <option value="difference" selected>difference</option>
+            <option value="max">max</option>
+          </select>
+          <div class="ctl">
+            <div class="ctl-row"><label for="nc-amt">amount</label><output id="nc-amt-o">0.60</output></div>
+            <input type="range" id="nc-amt" min="0" max="100" value="60">
+          </div>
+        </div>
+
+        <div class="node" id="n-d" style="--nc: var(--p-brush)">
+          <p class="node-name">Palette</p>
+          <select id="nd-ramp" aria-label="Colour ramp">
+            <option value="verdigris">verdigris</option>
+            <option value="ochre">ochre</option>
+            <option value="madder">madder</option>
+            <option value="ultramarine" selected>ultramarine</option>
+            <option value="full">full spectrum</option>
+          </select>
+          <div class="ctl">
+            <div class="ctl-row"><label for="nd-posterize">posterize</label><output id="nd-posterize-o">0</output></div>
+            <input type="range" id="nd-posterize" min="0" max="12" value="0">
+          </div>
+        </div>
+
+        <div class="node" id="n-e" style="--nc: var(--p-code)">
+          <p class="node-name">Grain</p>
+          <div class="ctl">
+            <div class="ctl-row"><label for="ne-amt">amount</label><output id="ne-amt-o">0.18</output></div>
+            <input type="range" id="ne-amt" min="0" max="100" value="18">
+          </div>
+          <div class="ctl">
+            <div class="ctl-row"><label for="ne-vig">vignette</label><output id="ne-vig-o">0.35</output></div>
+            <input type="range" id="ne-vig" min="0" max="100" value="35">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <dl class="verdict">
+      <div><dt>Strength</dt><dd>The whole recipe is visible and reversible. Nothing is buried.</dd></div>
+      <div><dt>Cost</dt><dd>Bounded by the nodes you've built. Wide graphs get busy fast.</dd></div>
+      <div><dt>Non-coder</dt><dd>Fully open, and it teaches how the image is made.</dd></div>
+      <div><dt>Build effort</dt><dd>Highest up front &mdash; then every new node is cheap.</dd></div>
+    </dl>
+  </section>
+
+  <!-- ============ CLOSE ============ -->
+  <section class="close">
+    <h2>These aren't four options</h2>
+    <p>
+      Play with all four and the same thing keeps surfacing: three of them are
+      really one architecture. A node graph is a way of <em>arranging</em>
+      operations &mdash; so a hand-painted mask can be a node, and a block of your
+      own code can be a node too.
+    </p>
+    <p>
+      That gives one tool with three doors into it. You open the app and patch
+      boxes together, which needs no code. When you want to steer a system by
+      hand, you drop in a <strong>Mask node</strong> and paint into it &mdash; the
+      third demo, as one box in a graph. When a graph can't express what you want,
+      you drop in a <strong>Code node</strong> and write the fragment yourself
+      &mdash; the first demo, as one box in a graph. Nothing is thrown away as you
+      get more comfortable; the surface just gets deeper.
+    </p>
+    <p>
+      Brush-based painting is the one to leave out. It's the largest build, it's
+      the only one that doesn't compose with the others, and it makes the tool
+      compete with Procreate on Procreate's terms.
+    </p>
+    <div class="stack">
+      <p><b>Where that lands:</b></p>
+      <p>Graph engine &rarr; every node is a shader pass, resolution-independent by construction</p>
+      <p>Same graph renders 960&times;540 while you work, 3840&times;2160 on export</p>
+      <p>Loop nodes take a normalised time input, so a seamless MP4 is a render setting, not a feature</p>
+      <p>Frame / Gallery / ambient / USB are four export presets over one pipeline</p>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(() => {
+  "use strict";
+
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Browsers restore form state across reloads, which would silently override
+  // the authored defaults. Put every control back to what the markup says.
+  for (const el of document.querySelectorAll('input[type="range"]')) {
+    const d = el.getAttribute("value");
+    if (d !== null) el.value = d;
+  }
+  for (const el of document.querySelectorAll("select")) {
+    const chosen = el.querySelector("option[selected]");
+    el.value = chosen ? chosen.value : el.options[0].value;
+  }
+
+  /* ---------- theme-aware colours read from CSS tokens ---------- */
+
+  const theme = { ground: "#DFE2DC", groundRGB: [223, 226, 220], light: true };
+
+  function hexToRGB(hex) {
+    const h = hex.trim().replace("#", "");
+    const s = h.length === 3 ? h.split("").map((c) => c + c).join("") : h;
+    return [
+      parseInt(s.slice(0, 2), 16),
+      parseInt(s.slice(2, 4), 16),
+      parseInt(s.slice(4, 6), 16),
+    ];
+  }
+
+  function readTheme() {
+    const cs = getComputedStyle(document.documentElement);
+    const g = cs.getPropertyValue("--canvas-ground") || "#DFE2DC";
+    theme.ground = g.trim();
+    theme.groundRGB = hexToRGB(theme.ground);
+    const [r, gg, b] = theme.groundRGB;
+    theme.light = r * 0.299 + gg * 0.587 + b * 0.114 > 128;
+  }
+  readTheme();
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", readTheme);
+  new MutationObserver(readTheme).observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["data-theme"],
+  });
+
+  /* ---------- canvas fitting (CSS-pixel drawing space) ---------- */
+
+  const fitted = new Map();
+
+  function fit(canvas, onResize) {
+    const ctx = canvas.getContext("2d");
+    const state = { canvas, ctx, w: 0, h: 0 };
+    const apply = () => {
+      const r = canvas.getBoundingClientRect();
+      if (!r.width) return;
+      const dpr = Math.min(devicePixelRatio || 1, 2);
+      canvas.width = Math.round(r.width * dpr);
+      canvas.height = Math.round(r.height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      state.w = r.width;
+      state.h = r.height;
+      if (onResize) onResize(state);
+    };
+    new ResizeObserver(apply).observe(canvas);
+    apply();
+    fitted.set(canvas, state);
+    return state;
+  }
+
+  function pointerPos(state, e) {
+    const r = state.canvas.getBoundingClientRect();
+    return {
+      x: (e.clientX - r.left) * (state.w / r.width),
+      y: (e.clientY - r.top) * (state.h / r.height),
+    };
+  }
+
+  /* ---------- shared frame loop, visible canvases only ---------- */
+
+  const scenes = [];
+
+  function register(canvas, draw) {
+    const scene = { canvas, draw, visible: false };
+    scenes.push(scene);
+    new IntersectionObserver(
+      (entries) => {
+        for (const en of entries) scene.visible = en.isIntersecting;
+      },
+      { rootMargin: "120px" }
+    ).observe(canvas);
+    return scene;
+  }
+
+  let start = performance.now();
+  function frame(now) {
+    const t = (now - start) / 1000;
+    for (const s of scenes) {
+      if (s.visible || s.forceOnce) {
+        s.forceOnce = false;
+        try { s.draw(t); } catch (_) { /* keep other scenes alive */ }
+      }
+    }
+    if (!reduced) requestAnimationFrame(frame);
+  }
+
+  /* ============================================================
+     1. CODE
+     ============================================================ */
+
+  const codeCanvas = document.getElementById("cv-code");
+  const codeState = fit(codeCanvas);
+  const editor = document.getElementById("code-editor");
+  const codeErr = document.getElementById("code-err");
+  const defaultSketch = document.getElementById("default-sketch").textContent.trim();
+
+  let sketchFn = null;
+  let compileTimer = 0;
+
+  function compile() {
+    try {
+      const fn = new Function("ctx", "t", "w", "h", editor.value);
+      fn(codeState.ctx, 0, codeState.w, codeState.h);
+      sketchFn = fn;
+      codeErr.textContent = "";
+    } catch (err) {
+      codeErr.textContent = String(err.message || err);
+    }
+  }
+
+  editor.value = defaultSketch;
+  editor.addEventListener("input", () => {
+    clearTimeout(compileTimer);
+    compileTimer = setTimeout(compile, 350);
+  });
+  document.getElementById("code-reset").addEventListener("click", () => {
+    editor.value = defaultSketch;
+    compile();
+  });
+  compile();
+
+  const codeScene = register(codeCanvas, (t) => {
+    const { ctx, w, h } = codeState;
+    ctx.fillStyle = theme.ground;
+    ctx.fillRect(0, 0, w, h);
+    if (!sketchFn) return;
+    ctx.save();
+    try {
+      sketchFn(ctx, t, w, h);
+    } catch (err) {
+      codeErr.textContent = String(err.message || err);
+      sketchFn = null;
+    }
+    ctx.restore();
+  });
+
+  /* ============================================================
+     2. BRUSH
+     ============================================================ */
+
+  const brushCanvas = document.getElementById("cv-brush");
+  const brushHint = document.getElementById("hint-brush");
+  const brushPigments = ["#1F6E5E", "#8F6018", "#9B3A45", "#33509B", "#E9EAE6", "#14191B"];
+  const brush = { size: 54, scatter: 0.55, flow: 0.3, color: brushPigments[0], down: false, prev: null };
+
+  const bristles = Array.from({ length: 16 }, () => ({
+    a: Math.random() * Math.PI * 2,
+    r: Math.sqrt(Math.random()),
+    o: 0.35 + Math.random() * 0.65,
+  }));
+
+  const brushState = fit(brushCanvas, (s) => {
+    s.ctx.fillStyle = theme.ground;
+    s.ctx.fillRect(0, 0, s.w, s.h);
+    seedBrushDemo(s);
+  });
+
+  function stamp(s, x0, y0, x1, y1) {
+    const { ctx } = s;
+    ctx.lineCap = "round";
+    ctx.strokeStyle = brush.color;
+    for (const b of bristles) {
+      const d = brush.size * 0.5 * b.r * brush.scatter;
+      const ox = Math.cos(b.a) * d;
+      const oy = Math.sin(b.a) * d;
+      ctx.globalAlpha = brush.flow * b.o * 0.5;
+      ctx.lineWidth = Math.max(0.6, (brush.size / 9) * (0.4 + b.o * 0.6));
+      ctx.beginPath();
+      ctx.moveTo(x0 + ox, y0 + oy);
+      ctx.lineTo(x1 + ox, y1 + oy);
+      ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  function seedBrushDemo(s) {
+    const saved = { ...brush };
+    brush.color = "#1F6E5E";
+    brush.size = 76;
+    brush.flow = 0.5;
+    brush.scatter = 0.42;
+    let px = s.w * 0.12;
+    let py = s.h * 0.7;
+    for (let i = 1; i <= 60; i++) {
+      const p = i / 60;
+      const x = s.w * (0.12 + p * 0.72);
+      const y = s.h * (0.7 - p * 0.38) + Math.sin(p * 7) * s.h * 0.07;
+      stamp(s, px, py, x, y);
+      px = x;
+      py = y;
+    }
+    Object.assign(brush, saved);
+  }
+
+  const swatchHost = document.getElementById("br-swatches");
+  brushPigments.forEach((hex, i) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "swatch";
+    b.style.background = hex;
+    b.setAttribute("aria-pressed", String(i === 0));
+    b.setAttribute("aria-label", "Pigment " + (i + 1));
+    b.addEventListener("click", () => {
+      brush.color = hex;
+      swatchHost.querySelectorAll(".swatch").forEach((el) =>
+        el.setAttribute("aria-pressed", String(el === b))
+      );
+    });
+    swatchHost.append(b);
+  });
+
+  function bindRange(id, fn, fmt) {
+    const input = document.getElementById(id);
+    const out = document.getElementById(id + "-o");
+    const update = () => {
+      const v = Number(input.value);
+      if (out) out.textContent = fmt ? fmt(v) : String(v);
+      fn(v);
+    };
+    input.addEventListener("input", update);
+    update();
+  }
+
+  bindRange("br-size", (v) => (brush.size = v));
+  bindRange("br-scatter", (v) => (brush.scatter = v / 100), (v) => (v / 100).toFixed(2));
+  bindRange("br-flow", (v) => (brush.flow = v / 100), (v) => (v / 100).toFixed(2));
+
+  document.getElementById("br-clear").addEventListener("click", () => {
+    brushState.ctx.fillStyle = theme.ground;
+    brushState.ctx.fillRect(0, 0, brushState.w, brushState.h);
+  });
+
+  brushCanvas.addEventListener("pointerdown", (e) => {
+    brushCanvas.setPointerCapture(e.pointerId);
+    brush.down = true;
+    brush.prev = pointerPos(brushState, e);
+    for (const b of bristles) b.a = Math.random() * Math.PI * 2;
+    brushHint.hidden = true;
+  });
+  brushCanvas.addEventListener("pointermove", (e) => {
+    if (!brush.down) return;
+    const p = pointerPos(brushState, e);
+    stamp(brushState, brush.prev.x, brush.prev.y, p.x, p.y);
+    brush.prev = p;
+  });
+  const endBrush = () => (brush.down = false);
+  brushCanvas.addEventListener("pointerup", endBrush);
+  brushCanvas.addEventListener("pointercancel", endBrush);
+
+  /* ============================================================
+     3. HYBRID
+     ============================================================ */
+
+  const hyCanvas = document.getElementById("cv-hybrid");
+  const hyHint = document.getElementById("hint-hybrid");
+  const GC = 96;
+  const GR = 54;
+  const mask = new Float32Array(GC * GR);
+
+  const hy = {
+    brush: 90,
+    turb: 1,
+    flow: 1,
+    density: 900,
+    erasing: false,
+    down: false,
+    prev: null,
+  };
+
+  const maskCv = document.createElement("canvas");
+  maskCv.width = GC;
+  maskCv.height = GR;
+  const maskCtx = maskCv.getContext("2d");
+  const maskImg = maskCtx.createImageData(GC, GR);
+
+  let particles = [];
+  const hyState = fit(hyCanvas, (s) => {
+    s.ctx.fillStyle = theme.ground;
+    s.ctx.fillRect(0, 0, s.w, s.h);
+    respawnAll(s);
+  });
+
+  function respawnAll(s) {
+    particles = Array.from({ length: 2200 }, () => ({
+      x: Math.random() * s.w,
+      y: Math.random() * s.h,
+      px: 0,
+      py: 0,
+      life: Math.random() * 220,
+    }));
+    for (const p of particles) {
+      p.px = p.x;
+      p.py = p.y;
+    }
+  }
+
+  function sampleMask(s, x, y) {
+    const gx = (x / s.w) * (GC - 1);
+    const gy = (y / s.h) * (GR - 1);
+    const x0 = Math.max(0, Math.min(GC - 2, Math.floor(gx)));
+    const y0 = Math.max(0, Math.min(GR - 2, Math.floor(gy)));
+    const fx = gx - x0;
+    const fy = gy - y0;
+    const i = y0 * GC + x0;
+    const a = mask[i] * (1 - fx) + mask[i + 1] * fx;
+    const b = mask[i + GC] * (1 - fx) + mask[i + GC + 1] * fx;
+    return a * (1 - fy) + b * fy;
+  }
+
+  function paintMask(s, x, y) {
+    const rad = (hy.brush / s.w) * GC * 0.5;
+    const cx = (x / s.w) * GC;
+    const cy = (y / s.h) * GR;
+    const r2 = rad * rad;
+    const x0 = Math.max(0, Math.floor(cx - rad));
+    const x1 = Math.min(GC - 1, Math.ceil(cx + rad));
+    const y0 = Math.max(0, Math.floor(cy - rad));
+    const y1 = Math.min(GR - 1, Math.ceil(cy + rad));
+    for (let gy = y0; gy <= y1; gy++) {
+      for (let gx = x0; gx <= x1; gx++) {
+        const d2 = (gx - cx) * (gx - cx) + (gy - cy) * (gy - cy);
+        if (d2 > r2) continue;
+        const fall = 1 - Math.sqrt(d2) / rad;
+        const i = gy * GC + gx;
+        mask[i] = hy.erasing
+          ? Math.max(0, mask[i] - fall * 0.3)
+          : Math.min(1, mask[i] + fall * 0.09);
+      }
+    }
+  }
+
+  function fieldAngle(x, y, t) {
+    const k = 1 / (0.35 + hy.turb * 1.6);
+    return (
+      (Math.sin(x * 0.0055 * (1 / k) + t * 0.25) +
+        Math.cos(y * 0.0071 * (1 / k) - t * 0.19) +
+        Math.sin((x + y) * 0.0031 * (1 / k) + t * 0.11)) *
+      1.45
+    );
+  }
+
+  // Drift threads sit just off the ground; growth pulls away from it. On bone
+  // that means darkening into madder, on ink it means lifting into ochre.
+  const HY_LIGHT = { thread: [138, 148, 143], grown: [142, 40, 54] };
+  const HY_DARK = { thread: [74, 90, 88], grown: [236, 178, 92] };
+
+  function updateMaskLayer() {
+    const d = maskImg.data;
+    const tint = theme.light ? [150, 62, 72] : [214, 142, 122];
+    for (let i = 0; i < mask.length; i++) {
+      const j = i * 4;
+      d[j] = tint[0];
+      d[j + 1] = tint[1];
+      d[j + 2] = tint[2];
+      d[j + 3] = Math.min(255, mask[i] * 55);
+    }
+    maskCtx.putImageData(maskImg, 0, 0);
+  }
+
+  bindRange("hy-brush", (v) => (hy.brush = v));
+  bindRange("hy-turb", (v) => (hy.turb = v / 100), (v) => (v / 100).toFixed(2));
+  bindRange("hy-flow", (v) => (hy.flow = v / 100), (v) => (v / 100).toFixed(2));
+  bindRange("hy-density", (v) => (hy.density = v));
+
+  const eraseBtn = document.getElementById("hy-erase");
+  eraseBtn.addEventListener("click", () => {
+    hy.erasing = !hy.erasing;
+    eraseBtn.setAttribute("aria-pressed", String(hy.erasing));
+  });
+  document.getElementById("hy-clear").addEventListener("click", () => {
+    mask.fill(0);
+    hyState.ctx.fillStyle = theme.ground;
+    hyState.ctx.fillRect(0, 0, hyState.w, hyState.h);
+  });
+
+  hyCanvas.addEventListener("pointerdown", (e) => {
+    hyCanvas.setPointerCapture(e.pointerId);
+    hy.down = true;
+    const p = pointerPos(hyState, e);
+    paintMask(hyState, p.x, p.y);
+    hyHint.hidden = true;
+  });
+  hyCanvas.addEventListener("pointermove", (e) => {
+    if (!hy.down) return;
+    const p = pointerPos(hyState, e);
+    paintMask(hyState, p.x, p.y);
+  });
+  const endHy = () => (hy.down = false);
+  hyCanvas.addEventListener("pointerup", endHy);
+  hyCanvas.addEventListener("pointercancel", endHy);
+
+  // seed a starting gesture so the demo is alive before anyone touches it
+  (function seedHybrid() {
+    const s = hyState;
+    if (!s.w) return;
+    for (let i = 0; i <= 40; i++) {
+      const p = i / 40;
+      paintMask(s, s.w * (0.2 + p * 0.6), s.h * (0.62 - Math.sin(p * Math.PI) * 0.34));
+      paintMask(s, s.w * (0.2 + p * 0.6), s.h * (0.62 - Math.sin(p * Math.PI) * 0.34));
+    }
+  })();
+
+  let maskDirty = 0;
+
+  register(hyCanvas, (t) => {
+    const { ctx, w, h } = hyState;
+    if (!w) return;
+
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = theme.ground;
+    ctx.globalAlpha = 0.0025;
+    ctx.fillRect(0, 0, w, h);
+    ctx.globalAlpha = 1;
+
+    // The wash is re-laid every frame against the fade above, so it settles at a
+    // low equilibrium tint rather than building up to an opaque slab.
+    if (maskDirty++ % 4 === 0) updateMaskLayer();
+    ctx.globalAlpha = 0.004;
+    ctx.imageSmoothingEnabled = true;
+    ctx.drawImage(maskCv, 0, 0, w, h);
+    ctx.globalAlpha = 1;
+
+    const n = Math.min(hy.density, particles.length);
+    const pal = theme.light ? HY_LIGHT : HY_DARK;
+    ctx.lineCap = "round";
+    for (let i = 0; i < n; i++) {
+      const p = particles[i];
+      const m = sampleMask(hyState, p.x, p.y);
+
+      let ang = fieldAngle(p.x, p.y, t);
+      if (m > 0.01) {
+        const gx = sampleMask(hyState, Math.min(w - 1, p.x + 10), p.y) - sampleMask(hyState, Math.max(0, p.x - 10), p.y);
+        const gy = sampleMask(hyState, p.x, Math.min(h - 1, p.y + 10)) - sampleMask(hyState, p.x, Math.max(0, p.y - 10));
+        if (gx || gy) {
+          const ga = Math.atan2(gy, gx);
+          const pull = Math.min(0.6, m * 0.9);
+          ang = ang * (1 - pull) + ga * pull;
+        }
+      }
+
+      const speed = (0.5 + m * 2.2) * hy.flow;
+      p.px = p.x;
+      p.py = p.y;
+      p.x += Math.cos(ang) * speed;
+      p.y += Math.sin(ang) * speed;
+      p.life -= 1;
+
+      const alpha = 0.02 + m * 0.14;
+      const mm = Math.min(1, m * 1.6);
+      const r = Math.round(pal.thread[0] + (pal.grown[0] - pal.thread[0]) * mm);
+      const g = Math.round(pal.thread[1] + (pal.grown[1] - pal.thread[1]) * mm);
+      const b = Math.round(pal.thread[2] + (pal.grown[2] - pal.thread[2]) * mm);
+      ctx.strokeStyle = "rgba(" + r + "," + g + "," + b + "," + alpha.toFixed(3) + ")";
+      ctx.lineWidth = 0.5 + m * 2.2;
+      ctx.beginPath();
+      ctx.moveTo(p.px, p.py);
+      ctx.lineTo(p.x, p.y);
+      ctx.stroke();
+
+      if (p.life < 0 || p.x < -5 || p.x > w + 5 || p.y < -5 || p.y > h + 5) {
+        p.x = Math.random() * w;
+        p.y = Math.random() * h;
+        p.px = p.x;
+        p.py = p.y;
+        p.life = 120 + Math.random() * 220;
+      }
+    }
+  });
+
+  /* ============================================================
+     4. NODE GRAPH
+     ============================================================ */
+
+  const nodeCanvas = document.getElementById("cv-node");
+  const NW = 256;
+  const NH = 144;
+  const nodeOff = document.createElement("canvas");
+  nodeOff.width = NW;
+  nodeOff.height = NH;
+  const nodeOffCtx = nodeOff.getContext("2d");
+  const nodeImg = nodeOffCtx.createImageData(NW, NH);
+
+  const grainField = new Float32Array(NW * NH);
+  for (let i = 0; i < grainField.length; i++) grainField[i] = Math.random() * 2 - 1;
+
+  const nodeState = fit(nodeCanvas);
+
+  const RAMPS = {
+    verdigris: [[8, 26, 26], [31, 110, 94], [206, 226, 214]],
+    ochre: [[26, 18, 8], [160, 108, 30], [242, 224, 178]],
+    madder: [[24, 8, 12], [155, 58, 69], [244, 208, 200]],
+    ultramarine: [[8, 12, 30], [51, 80, 155], [212, 224, 246]],
+    full: [[24, 34, 60], [176, 74, 78], [232, 206, 140]],
+  };
+
+  const ng = {
+    a: { type: "waves", scale: 0.4, speed: 0.5 },
+    b: { type: "rings", scale: 0.22, speed: 0.3 },
+    blend: "difference",
+    amount: 0.6,
+    ramp: "ultramarine",
+    posterize: 0,
+    grain: 0.18,
+    vignette: 0.35,
+  };
+
+  function bindSelect(id, fn) {
+    const el = document.getElementById(id);
+    el.addEventListener("change", () => fn(el.value));
+    fn(el.value);
+  }
+
+  bindSelect("na-type", (v) => (ng.a.type = v));
+  bindSelect("nb-type", (v) => (ng.b.type = v));
+  bindSelect("nc-mode", (v) => (ng.blend = v));
+  bindSelect("nd-ramp", (v) => (ng.ramp = v));
+
+  const f2 = (v) => (v / 100).toFixed(2);
+  bindRange("na-scale", (v) => (ng.a.scale = v / 100), f2);
+  bindRange("na-speed", (v) => (ng.a.speed = v / 100), f2);
+  bindRange("nb-scale", (v) => (ng.b.scale = v / 100), f2);
+  bindRange("nb-speed", (v) => (ng.b.speed = v / 100), f2);
+  bindRange("nc-amt", (v) => (ng.amount = v / 100), f2);
+  bindRange("nd-posterize", (v) => (ng.posterize = v));
+  bindRange("ne-amt", (v) => (ng.grain = v / 100), f2);
+  bindRange("ne-vig", (v) => (ng.vignette = v / 100), f2);
+
+  function fieldValue(cfg, u, v, t) {
+    const sc = 0.5 + cfg.scale * 22;
+    const sp = t * cfg.speed;
+    if (cfg.type === "waves") {
+      return 0.5 + 0.5 * Math.sin(u * sc + Math.sin(v * sc * 0.55 + sp) * 2.2);
+    }
+    if (cfg.type === "rings") {
+      const dx = u - 0.5;
+      const dy = v - 0.5;
+      return 0.5 + 0.5 * Math.sin(Math.sqrt(dx * dx + dy * dy) * sc * 2.4 - sp * 2);
+    }
+    return 0.5 + 0.5 * Math.sin(u * sc + sp) * Math.cos(v * sc * 0.8 - sp * 0.7);
+  }
+
+  function renderNodeGraph(t) {
+    const d = nodeImg.data;
+    const ramp = RAMPS[ng.ramp];
+    for (let y = 0; y < NH; y++) {
+      const v = y / NH;
+      for (let x = 0; x < NW; x++) {
+        const u = x / NW;
+        const a = fieldValue(ng.a, u, v, t);
+        const b = fieldValue(ng.b, u, v, t);
+
+        let c;
+        if (ng.blend === "mix") c = a * (1 - ng.amount) + b * ng.amount;
+        else if (ng.blend === "multiply") c = a * (b * ng.amount + (1 - ng.amount));
+        else if (ng.blend === "max") c = Math.max(a, b * ng.amount);
+        else c = Math.abs(a - b * ng.amount);
+
+        const i = y * NW + x;
+        if (ng.grain) c += grainField[i] * ng.grain * 0.45;
+
+        if (ng.posterize > 0) {
+          const steps = ng.posterize + 1;
+          c = Math.round(c * steps) / steps;
+        }
+
+        c = c < 0 ? 0 : c > 1 ? 1 : c;
+
+        let r, g, bl;
+        if (c < 0.5) {
+          const k = c * 2;
+          r = ramp[0][0] + (ramp[1][0] - ramp[0][0]) * k;
+          g = ramp[0][1] + (ramp[1][1] - ramp[0][1]) * k;
+          bl = ramp[0][2] + (ramp[1][2] - ramp[0][2]) * k;
+        } else {
+          const k = (c - 0.5) * 2;
+          r = ramp[1][0] + (ramp[2][0] - ramp[1][0]) * k;
+          g = ramp[1][1] + (ramp[2][1] - ramp[1][1]) * k;
+          bl = ramp[1][2] + (ramp[2][2] - ramp[1][2]) * k;
+        }
+
+        if (ng.vignette) {
+          const dx = u - 0.5;
+          const dy = v - 0.5;
+          const vg = 1 - Math.min(1, (dx * dx + dy * dy) * 2.6) * ng.vignette;
+          r *= vg;
+          g *= vg;
+          bl *= vg;
+        }
+
+        const j = i * 4;
+        d[j] = r;
+        d[j + 1] = g;
+        d[j + 2] = bl;
+        d[j + 3] = 255;
+      }
+    }
+    nodeOffCtx.putImageData(nodeImg, 0, 0);
+    const { ctx, w, h } = nodeState;
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = "high";
+    ctx.drawImage(nodeOff, 0, 0, w, h);
+  }
+
+  register(nodeCanvas, renderNodeGraph);
+
+  /* ---------- wires between node cards ---------- */
+
+  const graph = document.getElementById("graph");
+  const wires = document.getElementById("wires");
+  const links = [["n-a", "n-c"], ["n-b", "n-c"], ["n-c", "n-d"], ["n-d", "n-e"]];
+
+  function drawWires() {
+    const host = graph.getBoundingClientRect();
+    if (!host.width) return;
+    wires.setAttribute("viewBox", "0 0 " + host.width + " " + host.height);
+    const paths = links.map(([from, to]) => {
+      const a = document.getElementById(from).getBoundingClientRect();
+      const b = document.getElementById(to).getBoundingClientRect();
+      const x1 = a.right - host.left;
+      const y1 = a.top + a.height / 2 - host.top;
+      const x2 = b.left - host.left;
+      const y2 = b.top + b.height / 2 - host.top;
+      const mx = (x1 + x2) / 2;
+      return (
+        '<path d="M ' + x1 + ' ' + y1 +
+        " C " + mx + " " + y1 + ", " + mx + " " + y2 + ", " + x2 + " " + y2 + '" />'
+      );
+    });
+    wires.innerHTML = paths.join("");
+  }
+
+  new ResizeObserver(drawWires).observe(graph);
+  drawWires();
+
+  /* ---------- go ---------- */
+
+  if (reduced) {
+    for (const s of scenes) s.forceOnce = true;
+    requestAnimationFrame(frame);
+  } else {
+    requestAnimationFrame(frame);
+  }
+})();
+</script>
